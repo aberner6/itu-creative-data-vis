@@ -1,0 +1,23 @@
+[
+  { "fruit": "orange", "quant": 1, "color": "orange", "del":10},
+  { "fruit": "apple", "quant": 10, "color": "green", "del":20},
+  { "fruit": "tomato", "quant": 17, "color": "red", "del":20},
+  { "fruit": "orange", "quant": 1, "color": "orange", "del":60},
+  { "fruit": "apple", "quant": 20, "color": "green", "del":70},
+  { "fruit": "tomato", "quant": 47, "color": "red", "del":50},
+  { "fruit": "orange", "quant": 3, "color": "orange", "del":90},
+  { "fruit": "apple", "quant": 15, "color": "green", "del":60},
+  { "fruit": "tomato", "quant": 67, "color": "red", "del":30},
+  { "fruit": "orange", "quant": 11, "color": "orange", "del":20},
+  { "fruit": "apple", "quant": 103, "color": "green", "del":10},
+  { "fruit": "tomato", "quant": 127, "color": "red", "del":20},
+  { "fruit": "orange", "quant": 31, "color": "orange", "del":30},
+  { "fruit": "apple", "quant": 50, "color": "green", "del":30},
+  { "fruit": "tomato", "quant": 67, "color": "red", "del":40},
+  { "fruit": "orange", "quant": 71, "color": "orange", "del":50},
+  { "fruit": "apple", "quant": 150, "color": "green", "del":80},
+  { "fruit": "tomato", "quant": 147, "color": "red", "del":70},
+  { "fruit": "orange", "quant": 11, "color": "orange", "del":50},
+  { "fruit": "apple", "quant": 10, "color": "green", "del":30},
+  { "fruit": "tomato", "quant": 17, "color": "red", "del":50}
+]

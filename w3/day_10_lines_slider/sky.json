@@ -1,0 +1,12 @@
+[
+  {"day":"monday", "sky":100},
+  {"day":"tuesday", "sky":40},
+  {"day":"wednesday", "sky":80},
+  {"day":"thursday", "sky":70},
+  {"day":"friday", "sky":100},
+  {"day":"saturday", "sky":90},
+  {"day":"sunday", "sky":90},
+  {"day":"monday", "sky":100},
+  {"day":"tuesday", "sky":100},
+  {"day":"wednesday", "sky":30}
+]

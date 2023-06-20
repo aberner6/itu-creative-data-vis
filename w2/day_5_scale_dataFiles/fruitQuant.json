@@ -1,0 +1,23 @@
+[
+  { "fruit": "orange", "quant": 1, "color": "orange"},
+  { "fruit": "apple", "quant": 10, "color": "green"},
+  { "fruit": "tomato", "quant": 17, "color": "red"},
+  { "fruit": "orange", "quant": 1, "color": "orange"},
+  { "fruit": "apple", "quant": 20, "color": "green"},
+  { "fruit": "tomato", "quant": 47, "color": "red"},
+  { "fruit": "orange", "quant": 3, "color": "orange"},
+  { "fruit": "apple", "quant": 15, "color": "green"},
+  { "fruit": "tomato", "quant": 67, "color": "red"},
+  { "fruit": "orange", "quant": 11, "color": "orange"},
+  { "fruit": "apple", "quant": 103, "color": "green"},
+  { "fruit": "tomato", "quant": 127, "color": "red"},
+  { "fruit": "orange", "quant": 31, "color": "orange"},
+  { "fruit": "apple", "quant": 50, "color": "green"},
+  { "fruit": "tomato", "quant": 67, "color": "red"},
+  { "fruit": "orange", "quant": 71, "color": "orange"},
+  { "fruit": "apple", "quant": 150, "color": "green"},
+  { "fruit": "tomato", "quant": 147, "color": "red"},
+  { "fruit": "orange", "quant": 11, "color": "orange"},
+  { "fruit": "apple", "quant": 10, "color": "green"},
+  { "fruit": "tomato", "quant": 17, "color": "red"}
+]
