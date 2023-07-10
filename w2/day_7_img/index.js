@@ -1,13 +1,19 @@
 var w = 1400;
 var h = 800;
 var rad = 20;
-var leftMargin = rad*3;
-var imgW = rad*4;
-var imgH = rad*4;
+var imgSize = rad*4;
 var svg = d3.select("svg")
 			.attr("width",w)
 			.attr("height",h)
 			.style("background-color","black")
+
+////1. JUST SHOW IMAGE
+// var img = svg.append('image')
+//     .attr('x', w/2)
+//     .attr('y', h/2)
+//     .attr('width', imgW)
+//     .attr('height', imgH)
+// 		.attr("xlink:href", "img1.jpeg")
 
 var imgData = [
 	{
@@ -32,7 +38,7 @@ var maxDay = d3.max(imgData, function(d){
 })
 var dayScale = d3.scaleLinear()
 	.domain([minDay, maxDay])
-	.range([imgW, w-imgW*2])
+	.range([imgSize, w-imgSize*2])
 
 d3.select('svg')
     .selectAll('image')
@@ -42,8 +48,8 @@ d3.select('svg')
     	return dayScale(d.day);
     })
     .attr('y', h/2)
-    .attr('width', imgW*2)
-    .attr('height', imgH*2)
+    .attr('width', imgSize)
+    .attr('height', imgSize)
 	.attr("xlink:href", function(d){
 		return d.img;
 	})

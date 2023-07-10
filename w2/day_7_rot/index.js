@@ -1,7 +1,7 @@
 var w = 1000;
 var h = 500;
 var rad = 20;
-var leftMargin = rad*2;
+var margin = rad*2;
 
 
 var svg = d3.select("svg")
@@ -15,20 +15,79 @@ var max = d3.max(arrData);
 
 var xScale = d3.scaleLinear()
 				.domain([min, max])
-				.range([leftMargin, w-leftMargin]);
-var rects = svg
-	.selectAll('rect')
-	.data(arrData)
-	.join('rect')
-	.attr('x', 0)
-	.attr('y', 0)
-	.attr('width', rad)
-	.attr('height', rad)
-	.attr('fill', 'none')
-	.attr('stroke','magenta')
-    .attr('transform' , function(d){
-    	return 'translate('+xScale(d)+',' +h/2+') rotate(15)'
-    })
+				.range([margin, w-margin]);
+
+////1. JUST ROTATE?
+// var rects = svg
+// 	.selectAll('rect')
+// 	.data(arrData)
+// 	.join('rect')
+// 	.attr('x', function(d){
+// 		return xScale(d);
+// 	})
+// 	.attr('y', h/2)
+// 	.attr('width', rad)
+// 	.attr('height', rad)
+// 	.attr('transform', 'rotate(45)')
+// 	.attr('fill', 'none')
+// 	.attr('stroke','magenta');
+
+
+////2. TRANSFORM TO ROTATE?
+// var rects = svg
+// 	.selectAll('rect')
+// 	.data(arrData)
+// 	.join('rect')
+// 	.attr('x', 0)
+// 	.attr('y', 0)
+// 	.attr('width', rad)
+// 	.attr('height', rad)
+// 	.attr('fill', 'none')
+// 	.attr('stroke','magenta')
+//     .attr('transform' , function(d){
+//     	return 'translate('+xScale(d)+',' +h/2+') rotate(15)'
+//     })
+
+////3. GROUP TO ORGANISE THE ROTATING OBJECTS BETTER
+// var gElements = svg.selectAll('g')
+// 	.data(arrData)
+// 	.join('g')
+//     .attr('transform' , function(d){
+//     	return 'translate('+xScale(d)+',' +h/2+')'
+//     });
+// gElements.append('rect')
+// 		.attr('x', 0)
+// 		.attr('y', 0)
+// 		.attr('width', rad)
+// 		.attr('height', rad)
+// 		.attr('fill', 'none')
+// 		.attr('stroke','magenta')
+// 		.attr('transform',function(d,i){
+// 			return 'rotate('+i*10+')'
+// 		});
+
+////4. BETTER TO MAKE A ROTATION SCALE
+// var rotationScale = d3.scaleLinear()
+// 				.domain([min, max])
+// 				.range([0, 360]);
+// var gElements = svg.selectAll('g')
+// 	.data(arrData)
+// 	.join('g')
+//     .attr('transform' , function(d){
+//     	return 'translate('+xScale(d)+',' +h/2+')'
+//     });
+// gElements.append('rect')
+// 		.attr('x', 0)
+// 		.attr('y', 0)
+// 		.attr('width', rad)
+// 		.attr('height', rad)
+// 		.attr('fill', 'none')
+// 		.attr('stroke','magenta')
+// 		.attr('transform',function(d,i){
+// 			return 'rotate('+rotationScale(d)+')'
+// 		})
+
+
 
 
 
@@ -66,7 +125,7 @@ var rects = svg
 
 // 	var xScale = d3.scaleLinear()
 // 					.domain([min, max])
-// 					.range([leftMargin, w-leftMargin]);
+// 					.range([margin, w-margin]);
 
 
 // 	var rotationScale = d3.scaleLinear()

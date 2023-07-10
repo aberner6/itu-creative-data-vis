@@ -1,76 +1,45 @@
+//GOAL: can we move shapes around based on their data? 
+// Can we store more information inside every data piece aside from just numbers?
+
 var w = 500;
 var h = 500;
-var dogData = [17,5,10];
 var rad = 50;
 var leftMargin = w/4; 
 
-var myCanvas = d3.select("svg")
-								.attr("width", w)
-								.attr("height", h)
-								.style("background-color","black")
+var canvas = d3.select("svg")
+				.attr("width", w)
+				.attr("height", h)
+				.style("background-color","black")
 
-var circShape = d3.select("svg").selectAll("circle")
-									.data(dogData) 
-									.join("circle")
-									// .attr("cx", function(d,i){
-									// 	return leftMargin+ i*rad*2;
-									// })
-									// .attr("cy",h/2)
-									// .attr("r",function(d){
-									// 	return d;
-									// })
-									// .attr("fill","none")
-									// .attr("stroke","white");
-
-
-
+// var myData = [17,5,10];
+// var circ = canvas.selectAll("circle")
+// 					.data(myData) 
+// 					.join("circle")
+					// .attr("cx", function(d,i){
+					// 	return leftMargin+ i*rad*2;
+					// })
+					// .attr("cy",h/2)
+					// .attr("r",function(d){
+					// 	return d;
+					// })
+					// .attr("fill","none")
+					// .attr("stroke","white");
 
 
+// var participants = [
+//   { name: 'Sine', birthyear: 1990},
+//   { name: 'Leo', birthyear: 1992},
+//   { name: 'Ana', birthyear: 1995},
+// ];
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var arrData = [10, 40, 80];
-
-// d3.select('svg')
-//   .selectAll('circle')
-//   .data(arrData)
-//   .join('circle')
-// 	.attr('cx', function(d,i){
-// 		return 50+i*50;
-// 	})
-//   .attr('cy', h/2)
-//   .attr('r', function(d){
-// 		return d/2;
-// 	})
-//   .style('fill', 'pink')
-//   .attr('stroke','magenta')
-//   .attr('opacity',.3)
+// var circ = canvas.selectAll("circle")
+// 					.data(participants) 
+// 					.join("circle")
+// 					.attr("cx", function(d,i){
+// 						return leftMargin+ i*rad*2;
+// 					})
+// 					.attr("cy",h/2)
+// 					.attr('r', function(d) {
+// 					    return 0.01 * d.birthyear;
+// 					  })
+// 					.attr("fill","white")

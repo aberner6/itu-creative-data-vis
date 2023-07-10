@@ -1,7 +1,10 @@
+// Goal: map data onto coordinates, shapes and work with color. 
+// Learn to load and handle external files of data. 
+
 var w = 1000;
-var h = 1000;
-var rad = 20;
-var leftMargin = rad;
+var h = 700;
+var rad = 10;
+var margin = rad*4;
 
 
 var svg = d3.select("svg")
@@ -9,90 +12,12 @@ var svg = d3.select("svg")
 			.attr("height",h)
 			.style("background-color","black")
 
-var skyData = [
-	{"day":"monday", "sky":100},
-	{"day":"tuesday", "sky":40},
-	{"day":"wednesday", "sky":80},
-	{"day":"thursday", "sky":70},
-	{"day":"friday", "sky":100},
-	{"day":"saturday", "sky":90},
-	{"day":"sunday", "sky":90},
-	{"day":"monday", "sky":100},
-	{"day":"tuesday", "sky":1}
-];
-
-var xScale = d3.scaleLinear()
-	.domain([0,skyData.length])
-	.range([20, w])
-
-
-var dayScale = d3.scaleOrdinal()
-	.domain(["monday", "tuesday", "wednesday","thursday","friday","saturday","sunday"])
-	.range(["red","blue","orange","purple","pink","beige","brown"])
-
-var minSky = d3.min(skyData, function(d){
-	return d.sky;
-})
-var maxSky = d3.max(skyData, function(d){
-	return d.sky;
-})
-
-var radScale = d3.scaleLinear()
-	.domain([minSky, maxSky])
-	.range([10, 20])
-
-var blueScale = d3.scaleLinear()
-	.domain([minSky, maxSky])
-	.range([0,255])
-
-var skyCirc = svg.selectAll(".skyCirc")
-	.data(skyData)
-	.join("circle")
-	.attr("cx", function(d,i){
-		return xScale(i)
-	})
-	.attr("cy", h/2)
-	.attr("r", function(d){
-		return radScale(d.sky);
-	})
-	.attr("stroke",function(d){
-		return dayScale(d.day)
-	})
-	.attr("fill", function(d){
-		return 'rgb(0,0,'+blueScale(d.sky)+')'
-	})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-////LINEAR SCALES
-// var arrData = [1, 10, 17, 28];
-
-// var min = d3.min(arrData);
-// var max = d3.max(arrData);
-
+//1. LINEAR SCALES
+// var arrData = [100, 40, 80, 70, 100, 90, 90, 100, 1];
 // var xScale = d3.scaleLinear()
-// 				.domain([min, max])
-// 				.range([leftMargin, w-leftMargin]);
-
-// var numCircs = svg
+// 				.domain([0, 100])
+// 				.range([margin, w-margin]);
+// svg
 // 	.selectAll('circle')
 // 	.data(arrData)
 // 	.join('circle')
@@ -102,87 +27,200 @@ var skyCirc = svg.selectAll(".skyCirc")
 // 	.attr('cy', h/2)
 // 	.attr('r', rad)
 // 	.attr('fill', 'none')
-// 	.attr('stroke','magenta');
+// 	.attr('stroke','white')
 
 
-////ORDINAL SCALES
-// var favFruits = ['orange','apple','tomato','kaki','grapes','berries'];
 
-// var ordinalScale = d3.scaleOrdinal()
-//   .domain(favFruits)
-//   .range(d3.schemePaired);
 
-// var fruitRects = svg
-// 	.selectAll('rect')
-// 	.data(favFruits)
-// 	.join('rect')
-// 	.attr('x', function(d,i){
-// 		return i*10
+
+
+//2. CATEGORICAL DATA -> COLORS = ORDINAL SCALES
+// var arrData = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday","monday","tuesday"];
+// var colScale = d3.scaleOrdinal()
+// 				.domain(arrData)
+// 				.range(["red", "green", "blue","yellow", "orange", "purple","teal"])
+//   				// .range(d3.schemePaired);
+
+// svg
+// 	.selectAll('circle')
+// 	.data(arrData)
+// 	.join('circle')
+// 	.attr('cx', function(d,i){
+// 		return i*(rad*2);
 // 	})
-// 	.attr('y', h/2)
-// 	.attr('width', rad*2)
-// 	.attr('height', rad*2)
-// 	.attr('opacity',.5)
+// 	.attr('cy', h/2)
+// 	.attr('r', rad)
 // 	.attr('fill', function(d){
-// 		return ordinalScale(d);
+// 			return colScale(d);
+// 		})
+// 	.attr('stroke','white')	
+
+
+
+
+
+
+//3. CATEGORICAL DATA -> POSITIONS = SCALE BAND
+// var arrData = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday","monday","tuesday"];
+// var xScale = d3.scaleBand()
+// 				.domain(arrData)
+// 				.range([margin, w-margin]);
+// svg
+// 	.selectAll('circle')
+// 	.data(arrData)
+// 	.join('circle')
+// 	.attr('cx', function(d,i){
+// 		return xScale(d);
 // 	})
+// 	.attr('cy', h/2)
+// 	.attr('r', rad)
+// 	.attr('fill', 'none')
+// 	.attr('stroke','white')	
 
 
-////INITIAL DATA OBJECT
-// var fruitQuant = [
-//   { fruit: 'orange', quant: 1, color: 'orange'},
-//   { fruit: 'apple', quant: 10, color: 'green'},
-//   { fruit: 'tomato', quant: 17, color: 'red'}
+
+
+
+
+//4. MIN AND MAX OF DATA TO DRIVE THE SCALE'S DOMAIN EFFICIENTLY
+// var arrData = [100, 40, 80, 70, 100, 90, 90, 100, 1];
+// var min = d3.min(arrData)
+// var max = d3.max(arrData)
+// var radScale = d3.scaleLinear()
+// 	.domain([min, max])
+// 	.range([10, 20])
+// svg
+// 	.selectAll('circle')
+// 	.data(arrData)
+// 	.join('circle')
+// 	.attr('cx', w/2)
+// 	.attr('cy', h/2)
+// 	.attr('r', function(d){
+// 		return radScale(d);
+// 	})
+// 	.attr('fill', 'none')
+// 	.attr('stroke','white')
+
+
+
+
+
+
+//5. DATA OBJECTS -> SCALES
+// var skyData = [
+// 	{"day":"monday", "sky":100},
+// 	{"day":"tuesday", "sky":40},
+// 	{"day":"wednesday", "sky":80},
+// 	{"day":"thursday", "sky":70},
+// 	{"day":"friday", "sky":100},
+// 	{"day":"saturday", "sky":90},
+// 	{"day":"sunday", "sky":90},
+// 	{"day":"monday", "sky":100},
+// 	{"day":"tuesday", "sky":1}
 // ];
 
-// var fruitQuant = [];
-// d3.json("fruitQuant.json")
+// //CLASSIC JAVASCRIPT
+// var days = [];
+// getDays();
+// function getDays(){
+// 	for (var i = 0; i<skyData.length; i++){
+// 		days.push(skyData[i].day);
+// 	}
+// }
+// var dayScale = d3.scaleBand()
+// 	.domain(days)
+// 	.range([margin, w-margin]);
+
+// var minSky = d3.min(skyData, function(d){
+// 	return d.sky;
+// })
+// var maxSky = d3.max(skyData, function(d){
+// 	return d.sky;
+// })
+
+// var colScale = d3.scaleLinear()
+// 	.domain([minSky, maxSky])
+// 	.range(d3.schemeTableau10)
+// 	// .range(d3.schemePaired);
+// 	// .range([0,255])
+
+// var skyCirc = svg.selectAll("circle")
+// 	.data(skyData)
+// 	.join("circle")
+// 	.attr("cx", function(d,i){
+// 		return dayScale(d.day)
+// 	})
+// 	.attr("cy", h/2)
+// 	.attr("r", 10)
+// 	.attr("fill",function(d){
+// 		console.log(colScale(d.sky))
+// 		return colScale(d.sky)
+// 	})
+// 	// .attr("fill", function(d){
+// 	// 	return 'rgb(0,0,'+colScale(d.sky)+')'
+// 	// })
+
+
+
+
+
+
+////INITIAL DATA OBJECT FOR REFERENCE
+//// var skyData = [
+//// 	{"day":"monday", "cloudCov":100},
+//// 	{"day":"tuesday", "cloudCov":40},
+//// 	{"day":"wednesday", "cloudCov":80}
+//// ];
+
+// var skyData = [];
+// d3.json("skyData.json")
 // 	.then(function(data) {
-//     	fruitQuant = data;
+//     	skyData = data;
 //     	draw();
 //   	});
 
 // function draw(){
-// 	////new need here:
-// 	var min = d3.min(fruitQuant, function(d){
-// 		return d.quant;
+// 	var min = d3.min(skyData, function(d){
+// 		return d.cloudCov;
 // 	});
-// 	var max = d3.max(fruitQuant, function(d){
-// 		return d.quant;
+// 	var max = d3.max(skyData, function(d){
+// 		return d.cloudCov;
 // 	});
 
-// 	////new need here:
-// 	var fruitNames = [];
-// 	var fruitColors = [];
-
-// 	getFruit();
-// 	function getFruit(){
-// 		for (var i = 0; i<fruitQuant.length; i++){
-// 			fruitNames.push(fruitQuant[i].fruit);
-// 			fruitColors.push(fruitQuant[i].color);
+// 	var days = [];
+// 	getSky();
+// 	function getSky(){
+// 		for (var i = 0; i<skyData.length; i++){
+// 			days.push(skyData[i].day);
 // 		}
 // 	}
+// 	var xScale = d3.scaleBand()
+// 					.domain(days)
+// 					.range([margin, w-margin]);
+	
+// 	var yScale = d3.scaleLinear()
+// 					.domain([0, 6])
+// 					.range([h/3, h/3+100])
 
-// 	var ordinalScale = d3.scaleOrdinal()
-// 						  .domain(fruitNames)
-// 						  .range(fruitColors);
 
-// 	var xScale = d3.scaleLinear()
+// 	var clScale = d3.scaleLinear()
 // 					.domain([min, max])
-// 					.range([leftMargin, w-leftMargin]);
+// 					.range(["lightblue","blue"]);
 
-// 	var fruitRects = svg
+// 	var skyRects = svg
 // 		.selectAll('rect')
-// 		.data(fruitQuant)
+// 		.data(skyData)
 // 		.join('rect')
-// 		.attr('x', function(d,i){
-// 			return xScale(d.quant);
+// 		.attr('x', function(d){
+// 			return xScale(d.day);
 // 		})
-// 		.attr('y', h/2)
+// 		.attr('y', function(d,i){
+// 			// console.log(Math.floor(i / 7))
+// 			return yScale(Math.floor(i / 7))
+// 		})
 // 		.attr('width', rad)
 // 		.attr('height', rad)
-// 		.attr('opacity',.5)
 // 		.attr('fill', function(d){
-// 			return ordinalScale(d.fruit);
+// 			return clScale(d.cloudCov)
 // 		})
 // }

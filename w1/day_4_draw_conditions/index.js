@@ -1,3 +1,5 @@
+//GOAL: draw birthdays, use javascript conditions to control how your own birthday looks
+
 var w = 1000;
 var h = 1000;
 var rad = 20;
@@ -15,7 +17,8 @@ var birthDay = [
 ];
 console.log(birthDay[0]);
 
-var onePiece = [];
+//IF WE WANTED TO WORK WITH JUST ONE PIECE OF DATA
+// var onePiece = [];
 // onePiece.push(birthDay[0]);
 
 // var oneCirc = svg.selectAll('.oneCirc')
@@ -44,7 +47,7 @@ var dayRect = svg.selectAll('.dayRect')
 	})
   	.attr('fill','none')
   	.attr('stroke-width', function(d){
-  		if(d.name=='rachel'){
+  		if(d.name=='stine'){
   			return 4;
   		}else{
   			return 1;
@@ -53,68 +56,36 @@ var dayRect = svg.selectAll('.dayRect')
 	.attr('stroke','magenta');
 
 
-var monthRect = svg.selectAll('.monthRect')
-	.data(birthDay)
-	.join('rect') 
-	.attr('class', function(d){
-		return d.name+"month";
-	})
-	.attr('x', function(d,i){
-		return 50+i*150;
-	})
-  	.attr('y', 20)
-  	.attr('width', 10)
-  	.attr('height', function(d){
-		return d.month*10;
-	})
-  	.attr('fill','none')
-	.attr('stroke','blue');
-
-var yearRect = svg.selectAll('.yearRect')
-	.data(birthDay)
-	.join('rect') 
-	.attr('class', function(d){
-		return d.name +"year";
-	})
-	.attr('x', function(d,i){
-		return 50+i*150;
-	})
-  	.attr('y', 20)
-  	.attr('width', 10)
-  	.attr('height', function(d){
-		return d.yr*10;
-	})
-  	.attr('fill','none')
-	.attr('stroke','orange');
-
-
-
-
-
-
-// var evBD = [3,6,90]
-// var rectDay = svg.selectAll('.evRect')
-// 	.data(evBD)
-// 	.join('rect')  
+// var monthRect = svg.selectAll('.monthRect')
+// 	.data(birthDay)
+// 	.join('rect') 
+// 	.attr('class', function(d){
+// 		return d.name+"month";
+// 	})
 // 	.attr('x', function(d,i){
-// 		return 50+i*50;
+// 		return 50+i*150;
 // 	})
-//   	.attr('y', h/4)
-//   	.attr('width', function(d){
-// 		return d;
-// 	})
+//   	.attr('y', 20)
+//   	.attr('width', 10)
 //   	.attr('height', function(d){
-// 		return d;
+// 		return d.month*10;
 // 	})
 //   	.attr('fill','none')
-// 	.attr('stroke','magenta')
+// 	.attr('stroke','blue');
 
-
-
-
-
-
-
- // 	.attr('fill', function(d){
-	// 		return 'rgb('+d*2+',10, 200)'
-	// })
+// var yearRect = svg.selectAll('.yearRect')
+// 	.data(birthDay)
+// 	.join('rect') 
+// 	.attr('class', function(d){
+// 		return d.name +"year";
+// 	})
+// 	.attr('x', function(d,i){
+// 		return 50+i*150;
+// 	})
+//   	.attr('y', 20)
+//   	.attr('width', 10)
+//   	.attr('height', function(d){
+// 		return d.yr*10;
+// 	})
+//   	.attr('fill','none')
+// 	.attr('stroke','orange');
