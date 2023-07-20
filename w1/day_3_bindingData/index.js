@@ -1,29 +1,139 @@
 //GOAL: can we move shapes around based on their data? 
 // Can we store more information inside every data piece aside from just numbers?
 
-var w = 500;
+var w = 600;
 var h = 500;
-var rad = 50;
-var leftMargin = w/4; 
 
-var canvas = d3.select("svg")
+//create an svg canvas
+var canvas = d3.select("#canvas")
+				.append("svg")
 				.attr("width", w)
 				.attr("height", h)
-				.style("background-color","black")
+				.style("background-color","black");
 
-// var myData = [17,5,10];
-// var circ = canvas.selectAll("circle")
-// 					.data(myData) 
-// 					.join("circle")
-					// .attr("cx", function(d,i){
-					// 	return leftMargin+ i*rad*2;
-					// })
-					// .attr("cy",h/2)
-					// .attr("r",function(d){
-					// 	return d;
-					// })
-					// .attr("fill","none")
-					// .attr("stroke","white");
+
+
+var dataObjects = [
+	{ 	
+		name: 'annelie',
+		age: 35,
+		hometown: 'new york',
+		month: 6,
+		day: 12	
+	},
+	{
+		name: 'roger',
+		age: 28,
+		hometown: 'copenhagen',
+		month: 9,
+		day: 1
+	},
+	{
+		name: 'roger',
+		age: 28,
+		hometown: 'copenhagen',
+		month: 8,
+		day: 1
+	},
+	{
+		name: 'roger',
+		age: 28,
+		hometown: 'copenhagen',
+		month: 7,
+		day: 1
+	},
+	{
+		name: 'roger',
+		age: 28,
+		hometown: 'copenhagen',
+		month: 12,
+		day: 1
+	},
+	{
+		name: 'roger',
+		age: 28,
+		hometown: 'copenhagen',
+		month: 1,
+		day: 1
+	}
+]
+
+var rectWidth = 20;
+var margin = rectWidth*2;
+var xScale = d3.scaleLinear()
+	.domain([1, 12])
+	.range([margin, w-margin]);
+
+var rects = canvas.selectAll("rect")
+	.data(dataObjects)
+	.join("rect")
+	.attr("x", function(d){
+		return xScale(d.month);
+	})
+	.attr("y", margin)
+	.attr("width", rectWidth)
+	.attr("height", function(d){
+		return d.age;
+	})
+	.attr("fill","white");
+	
+
+
+
+
+
+
+
+
+
+// var myData = [60, 28, 27, 25, 18, 50, 35, 100, 545, 10, 12, 22, 25, 26, 50, 20, 8];
+// var rectHeight = h/myData.length;
+
+// var myRects = canvas.selectAll("rect")
+// 					.data(myData)
+// 					.join("rect")
+// 					.attr("x", 10)
+// 					.attr("y", function(d, i){
+// 						return 10+i*50;
+// 					})
+// 					.attr("width", function(d,i){
+// 						// if(i>=3 && i<=6){
+// 						// 	return d;
+// 						// }else{
+// 						// 	return 0;
+// 						// }
+// 						return d;
+// 					})
+// 					.attr("height", rectHeight)
+// 					.attr("fill","white")
+// 					.attr("stroke","pink")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // var participants = [

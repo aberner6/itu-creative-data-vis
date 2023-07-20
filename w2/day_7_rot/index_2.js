@@ -4,7 +4,7 @@ var rad = 20;
 var margin = rad*2;
 
 
-var svg = d3.select("svg")
+var svg = d3.select("#canvas").append("svg")
 			.attr("width",w)
 			.attr("height",h)
 			.style("background-color","black")

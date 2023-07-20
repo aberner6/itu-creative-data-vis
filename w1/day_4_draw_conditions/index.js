@@ -31,29 +31,29 @@ console.log(birthDay[0]);
 // 	})
 // 	.attr('fill','pink')
 
-var dayRect = svg.selectAll('.dayRect')
-	.data(birthDay)
-	.join('rect') 
-	.attr('class', function(d){
-		return d.name+"day";
-	})
-	.attr('x', function(d,i){
-		return 50+i*150;
-	})
-  	.attr('y', 20)
-  	.attr('width', 10)
-  	.attr('height', function(d){
-		return d.day*10;
-	})
-  	.attr('fill','none')
-  	.attr('stroke-width', function(d){
-  		if(d.name=='stine'){
-  			return 4;
-  		}else{
-  			return 1;
-  		}
-  	})
-	.attr('stroke','magenta');
+// var dayRect = svg.selectAll('.dayRect')
+// 	.data(birthDay)
+// 	.join('rect') 
+// 	.attr('class', function(d){
+// 		return d.name+"day";
+// 	})
+// 	.attr('x', function(d,i){
+// 		return 50+i*150;
+// 	})
+//   	.attr('y', 20)
+//   	.attr('width', 10)
+//   	.attr('height', function(d){
+// 		return d.day*10;
+// 	})
+//   	.attr('fill','none')
+//   	.attr('stroke-width', function(d){
+//   		if(d.name=='stine'){
+//   			return 4;
+//   		}else{
+//   			return 1;
+//   		}
+//   	})
+// 	.attr('stroke','magenta');
 
 
 // var monthRect = svg.selectAll('.monthRect')

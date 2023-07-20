@@ -88,18 +88,20 @@ var zoom = d3.zoom()
   .translateExtent([[0, 0], [w, h]]);
 
 function handleZoom(e) {
-  d3.selectAll('circle')
+  d3.select('svg')
     .attr('transform', e.transform);
 }
 function initZoom() {
-  // d3.selectAll('svg')
-  //   .call(zoom);
   d3.selectAll('svg')
-    .transition()
-    .duration(2000)
-    .call(zoom.scaleBy, 2)
-    .transition()
-    .duration(3000)
-    .call(zoom.translateBy,0, h/2);
+    .call(zoom);
+
+////PROGRAMMATIC ZOOM
+  // d3.selectAll('svg')
+  //   .transition()
+  //   .duration(2000)
+  //   .call(zoom.scaleBy, 2)
+  //   .transition()
+  //   .duration(3000)
+  //   .call(zoom.translateBy,0, h/2);
 }
 

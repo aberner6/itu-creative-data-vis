@@ -1,7 +1,7 @@
 var w = 1000;
 var h = 500;
 var rad = 20;
-var leftMargin = rad*2;
+var margin = rad*2;
 var div = d3.select("body").append("div") 
     .attr("class", "tooltip")       
     .style("opacity", 0);
@@ -17,7 +17,6 @@ d3.json("sky.json").then(function(data) {
 });
 
 var dayNames = [];
-var xScale = d3.scaleLinear()
 var radScale = d3.scaleLinear()
   .domain([0,100])
   .range([rad/4,rad])
@@ -34,7 +33,7 @@ var numPerRow = 7;
 var size = rad;
 var scale = d3.scaleLinear()
   .domain([0, numPerRow -1])
-  .range([leftMargin*2,w-leftMargin])
+  .range([margin*2,w-margin])
 
 var pageX;
 var pageY;
@@ -81,6 +80,4 @@ function draw(){
         .duration(500)    
         .style("opacity", 0); 
     }); 
-
-   
-}
+  }
