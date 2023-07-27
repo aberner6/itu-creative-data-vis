@@ -16,11 +16,15 @@ d3.json("sky.json").then(function(data) {
      processData();
 });
 
-var dayNames = [];
 var radScale = d3.scaleLinear()
   .domain([0,100])
   .range([rad/4,rad])
 
+var rectScale = d3.scaleLinear()
+  .domain([0, 100])
+  .range([1, 10])
+
+var dayNames = [];
 function processData(){
   for(var i = 0; i<skyData.length; i++){
     dayNames.push(skyData[i].day)
@@ -35,9 +39,6 @@ var scale = d3.scaleLinear()
   .domain([0, numPerRow -1])
   .range([margin*2,w-margin])
 
-var pageX;
-var pageY;
-
 function draw(){
 
   var g = svg.selectAll('g')
@@ -49,7 +50,7 @@ function draw(){
       return 'translate('+scale(x)+','+scale(y)+')'
     })
 
-  myShape = g
+  firstCirc = g
     .append('circle')
     .attr('cx',0)
     .attr('cy',0)
@@ -58,11 +59,21 @@ function draw(){
     })
     .attr('fill','white')
 
-  myShape = g.selectAll("circle.shapes")
-    .append('circle')
-    .attr('class','shapes')
+  secondCirc = g.append('circle')
+    // .attr('class', 'second')
     .attr('cx',0)
     .attr('cy',0)
     .attr('r', 10)
+    .attr('fill','pink')
+
+  secondShape = g.append('rect')
+    .attr('x',0)
+    .attr('y',0)
+    .attr('width', function(d){
+      return radScale(d.temp)
+    })
+    .attr('height', function(d){
+      return radScale(d.temp)
+    })
     .attr('fill','blue')
   }

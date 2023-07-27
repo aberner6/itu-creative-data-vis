@@ -21,5 +21,6 @@
   {"day":"saturday", "sky":19},
   {"day":"sunday", "sky":99},
   {"day":"monday", "sky":100},
-  {"day":"tuesday", "sky":20}
+  {"day":"tuesday", "sky":20},
+  {"day":"wednesday", "sky":20}
 ]
