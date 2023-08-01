@@ -58,6 +58,8 @@ function draw() {
   //so is attaching the array from the property values
   var circShape = g.selectAll('circle')
     .data(function (d) {
+      console.log(d);
+      console.log(d[1])
       return d[1];
     })
     .join('circle')

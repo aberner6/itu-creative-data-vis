@@ -1,0 +1,107 @@
+{
+    "name": "cause of death",
+    "children": [
+        {
+            "name": "loss of ice",
+            "children": [
+                {
+                    "name": "cluster",
+                    "children": [
+                        {
+                            "name": "AgglomerativeCluster",
+                            "size": 3938
+                        },
+                        {
+                            "name": "CommunityStructure",
+                            "size": 3812
+                        }
+                    ]
+                },
+                {
+                    "name": "graph"
+                }
+            ]
+        },
+        {
+            "name": "acidic seas",
+            "children": [
+                {
+                    "name": "coral reef",
+                    "children": [
+                        {
+                            "name": "Axes",
+                            "size": 1302
+                        }
+                    ]
+                },
+                {
+                    "name": "0",
+                    "children": [
+                        {
+                            "name": ".5",
+                            "children": [
+                                {
+                                    "name": "1",
+                                    "children": [
+                                        {
+                                            "name": "1.5",
+                                            "children": [
+                                                {
+                                                    "name": "2",
+                                                    "children": [
+                                                        {
+                                                            "name": "2.5",
+                                                            "children": [
+                                                                {
+                                                                    "name": "3",
+                                                                    "children": [
+                                                                        {
+                                                                            "name": "oyster",
+                                                                            "img": "oyster.jpg"                               
+                                                                        }
+                                                                    ]                        
+                                                                }
+                                                            ]               
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "shark"
+                }
+            ]
+        },
+        {
+            "name": "disease",
+            "children": [
+            ]
+        },
+        {
+            "name": "drought",
+            "children": [
+            ]
+        },
+        {
+            "name": "rising sea levels",
+            "children": [
+            ]
+        },
+        {
+            "name": "problems controlling body temperature",
+            "children": [
+            ]
+        },
+        {
+            "name": "problems procreating",
+            "children": [
+            ]
+        }
+    ]
+}

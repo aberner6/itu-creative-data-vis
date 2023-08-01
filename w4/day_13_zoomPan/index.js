@@ -59,27 +59,27 @@ function draw(){
       return radScale(d.sky) 
     })
     .attr('fill','white')
-    // .on("mouseover", function(d) { 
-    //   var thisData = d.target.__data__;
-    //   d3.select(this)
-    //     .transition()
-    //     .attr('fill','pink')
+    .on("mouseover", function(d) { 
+      var thisData = d.target.__data__;
+      d3.select(this)
+        .transition()
+        .attr('fill','pink')
 
-    //   div.transition()    
-    //     .duration(200)    
-    //     .style("opacity", .9);    
-    //   div.html(thisData.sky + "<br/>"+thisData.day) 
-    //     .style("left", (event.pageX) + "px")   
-    //     .style("top", (event.pageY - 28) + "px");   
-    // })          
-    // .on("mouseout", function(d) {  
-    //   d3.select(this)
-    //     .transition()
-    //     .attr('fill','white') 
-    //   div.transition()    
-    //     .duration(500)    
-    //     .style("opacity", 0); 
-    // }); 
+      div.transition()    
+        .duration(200)    
+        .style("opacity", .9);    
+      div.html(thisData.sky + "<br/>"+thisData.day) 
+        .style("left", (event.pageX) + "px")   
+        .style("top", (event.pageY - 28) + "px");   
+    })          
+    .on("mouseout", function(d) {  
+      d3.select(this)
+        .transition()
+        .attr('fill','white') 
+      div.transition()    
+        .duration(500)    
+        .style("opacity", 0); 
+    }); 
 }
 
 var zoom = d3.zoom()

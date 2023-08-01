@@ -18,7 +18,102 @@ d3.json("sky.json").then(function (data) {
      drawRadialLine();
 });
 
+////DRAW RADIAL LINE
+var myPath;
+var myText;
+var radialLineMaker = d3.radialLine();
+function drawRadialLine() {
+     var circScale = d3.scaleLinear()
+          .domain([0, 4])
+          .range([0, Math.PI * 2]);
 
+     var scaleRadius = d3.scaleLinear()
+          .domain([0, d3.max(skyData, d => d.sky)])
+          .range([0, 270])
+
+     radialLineMaker
+          .angle(function (d, i) {
+               return circScale(d.day);
+          })
+          .radius(function (d) {
+               return scaleRadius(d.sky);
+          })
+          .curve(d3.curveCatmullRomOpen)
+
+
+     var radialLineData = radialLineMaker(skyData);
+     console.log(radialLineData)
+
+
+     myPath = svg
+          .append('path')
+          .attr('transform', 'translate(' + w / 2 + ',' + h / 2 + ')')
+          .attr('d', radialLineData)
+          .attr('stroke', 'white')
+          .attr('fill', 'none')
+
+     // myText = svg.append("text")
+     //      .attr("x", w / 2)
+     //      .attr("y", h / 2)
+     //      .attr("fill", "white")
+     //      .text(0)
+}
+
+////INPUT CHANGES VIS
+// d3.select("#slider").on("input", function () {
+//      update(+this.value);
+// });
+
+// function update(val) {
+//      var circScale = d3.scaleLinear()
+//           .domain([0, skyData.length])
+//           .range([0, Math.PI * 2]);
+
+//      radialLineMaker
+//           .angle(function (d, i) {
+//                return circScale(i);
+//           })
+//           .radius(function (d) {
+//                return d.sky;
+//           });
+//      var radialLineData = radialLineMaker(skyData);
+
+//      myPath
+//           .attr('d', radialLineData)
+
+//      myText
+//           .text(val)
+// }
+
+
+
+
+// //YOU CAN ALSO DRAW SHAPES WITH PATHS
+// var radialLineGenerator = d3.radialLine();
+
+// var r1 = 15;
+// var r2 = 6;
+
+// var radialpoints = [
+// [0, r1],
+// [Math.PI * 0.2, r2],
+// [Math.PI * 0.4, r1],
+// [Math.PI * 0.6, r2],
+// [Math.PI * 0.8, r1],
+// [Math.PI * 1, r2],     
+// [Math.PI * 1.2, r1],
+// [Math.PI * 1.4, r2],
+// [Math.PI * 1.6, r1],
+// [Math.PI * 1.8, r2],
+// [Math.PI * 2, r1]
+// ];
+
+// var radialData = radialLineGenerator(radialpoints);
+// var radial = svg.append("path")
+//   .attr('transform','translate('+w/2+','+h/2+')')
+//   .attr("class", "radial")
+//   .attr("d", radialData)
+//   .attr("stroke","white")
 //DRAW A LINE
 // function drawLine(){
 //   var xScale = d3.scaleLinear()
@@ -46,95 +141,3 @@ d3.json("sky.json").then(function (data) {
 //     .attr('d', lineData)
 //     .attr('stroke','white')
 // }
-
-
-////DRAW RADIAL LINE
-var myPath;
-var myText;
-var radialLineMaker = d3.radialLine();
-function drawRadialLine() {
-     var circScale = d3.scaleLinear()
-          .domain([0, skyData.length])
-          .range([0, Math.PI * 2]);
-
-     radialLineMaker
-          .angle(function (d, i) {
-               return circScale(i);
-          })
-          .radius(function (d) {
-               return d.sky;
-          });
-
-     var radialLineData = radialLineMaker(skyData);
-     console.log(radialLineData)
-
-
-     myPath = svg
-          .append('path')
-          .attr('transform', 'translate(' + w / 2 + ',' + h / 2 + ')')
-          .attr('d', radialLineData)
-          .attr('stroke', 'white')
-          .attr('fill', 'none')
-
-     myText = svg.append("text")
-          .attr("x", w / 2)
-          .attr("y", h / 2)
-          .attr("fill", "white")
-          .text(0)
-}
-
-////INPUT CHANGES VIS
-d3.select("#slider").on("input", function () {
-     update(+this.value);
-});
-
-function update(val) {
-     var circScale = d3.scaleLinear()
-          .domain([0, skyData.length])
-          .range([0, Math.PI * 2]);
-
-     radialLineMaker
-          .angle(function (d, i) {
-               return circScale(i);
-          })
-          .radius(function (d) {
-               return d.sky;
-          });
-     var radialLineData = radialLineMaker(skyData);
-
-     myPath
-          .attr('d', radialLineData)
-
-     myText
-          .text(val)
-}
-
-
-
-
-//YOU CAN ALSO DRAW SHAPES WITH PATHS
-// var radialLineGenerator = d3.radialLine();
-
-// var r1 = 15;
-// var r2 = 6;
-
-// var radialpoints = [
-// [0, r1],
-// [Math.PI * 0.2, r2],
-// [Math.PI * 0.4, r1],
-// [Math.PI * 0.6, r2],
-// [Math.PI * 0.8, r1],
-// [Math.PI * 1, r2],     
-// [Math.PI * 1.2, r1],
-// [Math.PI * 1.4, r2],
-// [Math.PI * 1.6, r1],
-// [Math.PI * 1.8, r2],
-// [Math.PI * 2, r1]
-// ];
-
-// var radialData = radialLineGenerator(radialpoints);
-// var radial = svg.append("path")
-//   .attr('transform','translate('+w/2+','+h/2+')')
-//   .attr("class", "radial")
-//   .attr("d", radialData)
-//   .attr("stroke","white")
