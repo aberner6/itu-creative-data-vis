@@ -1,8 +1,8 @@
 //GOAL: can we move shapes around based on their data? 
 // Can we store more information inside every data piece aside from just numbers?
 
-var w = 600;
-var h = 500;
+var w = 1400;
+var h = 800;
 
 //create an svg canvas
 var canvas = d3.select("#canvas")
@@ -11,71 +11,159 @@ var canvas = d3.select("#canvas")
 				.attr("height", h)
 				.style("background-color","black");
 
+var dataObject = [
+		{
+			name:"annelie",
+			coffee:1,
+			water:2
+		},
+		{
+			name:"mie",
+			coffee:0,
+			water:2
+		},
+		{
+			name:"oliver",
+			coffee:1,
+			water:3
+		},
+		{
+			name:"saynab",
+			coffee:0,
+			water:1
+		},
+		{
+			name:"natalie",
+			coffee:0,
+			water:0
+		},
+		{
+			name:"magnus",
+			coffee:1,
+			water:1
+		},
+		{
+			name:"rakul",
+			coffee:1,
+			water:3
+		},
+		{
+			name:"olivia",
+			coffee:0,
+			water:3
+		}
+	]
+
+var line = canvas.append("line")
+					.attr("x1", 0)
+					.attr("x2", w)
+					.attr("y1", 10)
+					.attr("y2", 10)
+					.attr("stroke", "white")
+var radius = 5;
+var circles = canvas.selectAll("circle")
+					.data(dataObject)
+					.join("circle")
+					.attr("cx", function(d,i){
+						return d.water*radius;
+					})
+					.attr("cy", function(d,i){
+						return 10+d.coffee;
+					})
+					.attr("r", radius)
+					.attr("fill", "white")
 
 
-var dataObjects = [
-	{ 	
-		name: 'annelie',
-		age: 35,
-		hometown: 'new york',
-		month: 6,
-		day: 12	
-	},
-	{
-		name: 'roger',
-		age: 28,
-		hometown: 'copenhagen',
-		month: 9,
-		day: 1
-	},
-	{
-		name: 'roger',
-		age: 28,
-		hometown: 'copenhagen',
-		month: 8,
-		day: 1
-	},
-	{
-		name: 'roger',
-		age: 28,
-		hometown: 'copenhagen',
-		month: 7,
-		day: 1
-	},
-	{
-		name: 'roger',
-		age: 28,
-		hometown: 'copenhagen',
-		month: 12,
-		day: 1
-	},
-	{
-		name: 'roger',
-		age: 28,
-		hometown: 'copenhagen',
-		month: 1,
-		day: 1
-	}
-]
 
-var rectWidth = 20;
-var margin = rectWidth*2;
-var xScale = d3.scaleLinear()
-	.domain([1, 12])
-	.range([margin, w-margin]);
 
-var rects = canvas.selectAll("rect")
-	.data(dataObjects)
-	.join("rect")
-	.attr("x", function(d){
-		return xScale(d.month);
-	})
-	.attr("y", margin)
-	.attr("width", rectWidth)
-	.attr("height", function(d){
-		return d.age;
-	})
-	.attr("fill","white");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var dataObjects = [
+// 	{ 	
+// 		name: 'annelie',
+// 		age: 35,
+// 		hometown: 'new york',
+// 		month: 6,
+// 		day: 12	
+// 	},
+// 	{
+// 		name: 'roger',
+// 		age: 28,
+// 		hometown: 'copenhagen',
+// 		month: 9,
+// 		day: 1
+// 	},
+// 	{
+// 		name: 'roger',
+// 		age: 28,
+// 		hometown: 'copenhagen',
+// 		month: 8,
+// 		day: 1
+// 	},
+// 	{
+// 		name: 'roger',
+// 		age: 28,
+// 		hometown: 'copenhagen',
+// 		month: 7,
+// 		day: 1
+// 	},
+// 	{
+// 		name: 'roger',
+// 		age: 28,
+// 		hometown: 'copenhagen',
+// 		month: 12,
+// 		day: 1
+// 	},
+// 	{
+// 		name: 'roger',
+// 		age: 28,
+// 		hometown: 'copenhagen',
+// 		month: 1,
+// 		day: 1
+// 	}
+// ]
+
+// var rectWidth = 20;
+// var margin = rectWidth*2;
+// var xScale = d3.scaleLinear()
+// 	.domain([1, 12])
+// 	.range([margin, w-margin]);
+
+// var rects = canvas.selectAll("rect")
+// 	.data(dataObjects)
+// 	.join("rect")
+// 	.attr("x", function(d){
+// 		return xScale(d.month);
+// 	})
+// 	.attr("y", margin)
+// 	.attr("width", rectWidth)
+// 	.attr("height", function(d){
+// 		return d.age;
+// 	})
+// 	.attr("fill","white");
 	
 
 
