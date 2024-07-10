@@ -1,7 +1,7 @@
 //GOAL: can we move shapes around based on their data? 
 // Can we store more information inside every data piece aside from just numbers?
 
-var w = 1400;
+var w = 800;
 var h = 800;
 
 //create an svg canvas
@@ -57,20 +57,31 @@ var dataObject = [
 var line = canvas.append("line")
 					.attr("x1", 0)
 					.attr("x2", w)
-					.attr("y1", 10)
-					.attr("y2", 10)
+					.attr("y1", h/2)
+					.attr("y2", h/2)
 					.attr("stroke", "white")
-var radius = 5;
+var radius = 20;
+var spacing = 100;
+
 var circles = canvas.selectAll("circle")
 					.data(dataObject)
 					.join("circle")
-					.attr("cx", function(d,i){
-						return d.water*radius;
+					.attr("class",function(d){
+						return d.name;
 					})
-					.attr("cy", function(d,i){
-						return 10+d.coffee;
+					.attr("cx", function(d){
+						return spacing+d.water*spacing;
 					})
-					.attr("r", radius)
+					.attr("cy", function(d){
+						return h/2-d.coffee*spacing;
+					})
+					.attr("r", function(d){
+						if(d.coffee == 1 && d.water==3){
+							return radius *2;
+						}else{
+							return radius
+						}
+					})
 					.attr("fill", "white")
 
 
