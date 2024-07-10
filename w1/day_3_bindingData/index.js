@@ -62,6 +62,9 @@ var line = canvas.append("line")
 					.attr("stroke", "white")
 var radius = 20;
 var spacing = 100;
+function countDuplicates(dataObjects, currentObject) {
+    return dataObjects.filter(d => d.coffee === currentObject.coffee && d.water === currentObject.water).length;
+}
 
 var circles = canvas.selectAll("circle")
 					.data(dataObject)
@@ -75,14 +78,23 @@ var circles = canvas.selectAll("circle")
 					.attr("cy", function(d){
 						return h/2-d.coffee*spacing;
 					})
+					// .attr("r", function(d){
+					// 	if(d.coffee == 1 && d.water==3){
+					// 		return radius *2;
+					// 	}else{
+					// 		return radius
+					// 	}
+					// })
 					.attr("r", function(d){
-						if(d.coffee == 1 && d.water==3){
-							return radius *2;
-						}else{
-							return radius
-						}
-					})
+                        intersection = countDuplicates(dataObject, d);
+                        if(intersection > 1){
+                            return radius *intersection;
+                        }else{
+                            return radius
+                        }
+                    })
 					.attr("fill", "white")
+
 
 
 
