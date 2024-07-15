@@ -41,12 +41,19 @@ function draw(){
 	var yScale = d3.scaleBand()
 					.domain(arrayHeights)
 					.range([h-margin, margin])
+
+//interpolation
+	// var colorScale = d3.scaleSequential()
+	// 				    .interpolator(d3.interpolateRgbBasis(["grey","blue","white"]))
+	// 				    .domain([min, max])
+
 	var colorScale = d3.scaleOrdinal()
 					.domain(arrayColors)
-					.range(["blue","navy","pink"])
+					.range(d3.schemeSet3)
+
 
 	var rects = svg.selectAll("rect")
-					.data(data)
+					.data(skyData)
 					.join("rect")
 					.attr("x", function(d){
 						console.log(d);
@@ -58,7 +65,7 @@ function draw(){
 					.attr("width",rectW)
 					.attr("height",rectW)
 					.attr("fill",function(d){
-						return colorScale(d.color);
+						return colorScale(d.density);
 					});
 
 }
