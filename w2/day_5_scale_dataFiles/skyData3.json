@@ -1,0 +1,34 @@
+[
+	{"density": 0,
+	"color":"blue",
+	"height":"low"
+	},
+	{"density": 100,
+	"color":"grey",
+	"height":"low"
+	},
+	{"density": 50,
+	"color":"dark blue",
+	"height":"low"
+	},
+	{"density": 40,
+	"color":"bright blue",
+	"height":"low"
+	},
+	{"density":60,
+	"color":"blue",
+	"height":"low"
+	},
+	{"density": 80,
+	"color":"light blue",
+	"height":"low"
+	},
+	{"density": 90,
+	"color":"blue",
+	"height":"low"
+	},
+	{"density": 20,
+	"color":"dark blue",
+	"height":"low"
+	}
+]

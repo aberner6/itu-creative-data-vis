@@ -12,99 +12,6 @@ var margin = r*4;
 // 			.attr("height",h)
 // 			.style("background-color","black")
 
-			//  Exercise
-//Re-write your code from Friday using `d3.scale` to space out the shapes that you drew in your assignment.
-var w = 1000;
-var h = 700;
-var shapeSize = 10;
-var margin = shapeSize*4; // relate shape size to margin
-// create canvas
-var svg = d3.select("#canvas")
-            .append("svg")
-            .attr("width",w)
-            .attr("height",h)
-            .style("background-color","beige")
-var cloudData = [
-    {density: 7, size:5},
-    {density: 1, size: 1},
-    {density: 1, size:1},
-    {density:1, size:1},
-    {density: 1, size:1},
-    {density: 1, size: 1},
-    {density: 4, size:3},
-    {density:1, size:1},
-    {density: 1, size:5},
-    {density: 1, size: 3},
-    {density: 1, size:1},
-    {density:10, size:2},
-    {density:1, size:2},
-    {density: 2, size:2},
-    {density: 8, size: 8},
-    {density: 1, size:1},
-    {density:1, size:1},
-    {density:10, size:4},
-    {density: 3, size:3},
-    {density: 3, size: 8},
-    {density: 1, size:1},
-    {density:5, size:5},
-    {density: 7, size:10},
-    {density: 1, size: 1},
-    {density: 5, size:5},
-    {density:7, size:10},
-    {density: 1, size:1},
-    {density: 2, size: 2},
-    {density: 5, size:5},
-    {density:10, size:10},
-    {density: 4, size:3},
-    {density: 7, size: 10},
-]
-// find the minimum and maximum of the array of data
-var minSky = d3.min(cloudData, function(d){
-    return d.size
-});
-var maxSky = d3.max(cloudData, function(d){
-    return d.size
-});
-var dayScale = d3.scaleLinear()
-    .domain([0,cloudData.length])
-    .range([margin, w-margin]);	
-var radScale = d3.scaleLinear()
-	.domain([minSky, maxSky])
-	.range([5, 20])
-
-var minDensity = d3.min(cloudData, function(d){
-    return d.density
-});
-var maxDensity = d3.max(cloudData, function(d){
-    return d.density
-});
-var colScale = d3.scaleLinear()
-    .domain([minDensity, maxDensity])
-    .range([100, 255])
-    //.range(d3.schemePaired)
-    //.range([0,255]);
-
-var colorScale = d3.scaleSequential()
-    .interpolator(d3.interpolateRgb("white", "blue"))
-    .domain([minDensity, maxDensity]);
-
-var skyCirc = svg.selectAll("circle")
-    .data(cloudData)
-    .join("circle")
-    .attr('cx', function(d,i){
-        return dayScale(i);
-    })
-    .attr("cy", h/2)
-    .attr("r", function(d){
-        return radScale(d.size)
-    })
-    .attr("fill",function(d){
-		return colorScale(d.density)
-        // return 'rgb(0, 0,'+colScale(d.density)+')'
-    })
-
-
-
 
 
 //create array of data
@@ -436,3 +343,106 @@ var skyCirc = svg.selectAll("circle")
 // 			return clScale(d.cloudCov)
 // 		})
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+// //  Exercise
+// //Re-write your code from Friday using `d3.scale` to space out the shapes that you drew in your assignment.
+// var w = 1000;
+// var h = 700;
+// var shapeSize = 10;
+// var margin = shapeSize*4; // relate shape size to margin
+// // create canvas
+// var svg = d3.select("#canvas")
+//             .append("svg")
+//             .attr("width",w)
+//             .attr("height",h)
+//             .style("background-color","beige")
+// var cloudData = [
+//     {density: 7, size:5},
+//     {density: 1, size: 1},
+//     {density: 1, size:1},
+//     {density:1, size:1},
+//     {density: 1, size:1},
+//     {density: 1, size: 1},
+//     {density: 4, size:3},
+//     {density:1, size:1},
+//     {density: 1, size:5},
+//     {density: 1, size: 3},
+//     {density: 1, size:1},
+//     {density:10, size:2},
+//     {density:1, size:2},
+//     {density: 2, size:2},
+//     {density: 8, size: 8},
+//     {density: 1, size:1},
+//     {density:1, size:1},
+//     {density:10, size:4},
+//     {density: 3, size:3},
+//     {density: 3, size: 8},
+//     {density: 1, size:1},
+//     {density:5, size:5},
+//     {density: 7, size:10},
+//     {density: 1, size: 1},
+//     {density: 5, size:5},
+//     {density:7, size:10},
+//     {density: 1, size:1},
+//     {density: 2, size: 2},
+//     {density: 5, size:5},
+//     {density:10, size:10},
+//     {density: 4, size:3},
+//     {density: 7, size: 10},
+// ]
+// // find the minimum and maximum of the array of data
+// var minSky = d3.min(cloudData, function(d){
+//     return d.size
+// });
+// var maxSky = d3.max(cloudData, function(d){
+//     return d.size
+// });
+// var dayScale = d3.scaleLinear()
+//     .domain([0,cloudData.length])
+//     .range([margin, w-margin]); 
+// var radScale = d3.scaleLinear()
+//     .domain([minSky, maxSky])
+//     .range([5, 20])
+
+// var minDensity = d3.min(cloudData, function(d){
+//     return d.density
+// });
+// var maxDensity = d3.max(cloudData, function(d){
+//     return d.density
+// });
+// var colScale = d3.scaleLinear()
+//     .domain([minDensity, maxDensity])
+//     .range([100, 255])
+//     //.range(d3.schemePaired)
+//     //.range([0,255]);
+
+// var colorScale = d3.scaleSequential()
+//     .interpolator(d3.interpolateRgb("white", "blue"))
+//     .domain([minDensity, maxDensity]);
+
+// var skyCirc = svg.selectAll("circle")
+//     .data(cloudData)
+//     .join("circle")
+//     .attr('cx', function(d,i){
+//         return dayScale(i);
+//     })
+//     .attr("cy", h/2)
+//     .attr("r", function(d){
+//         return radScale(d.size)
+//     })
+//     .attr("fill",function(d){
+//         return colorScale(d.density)
+//         // return 'rgb(0, 0,'+colScale(d.density)+')'
+//     })
+
