@@ -26,7 +26,7 @@ function draw(){
 	});
 	console.log(min+"min "+max+"max");
 
-	var rectW = 10;
+	var rectW = 40;
 	var margin = rectW*2;
 	var xScale = d3.scaleLinear()
 					.domain([min, max])
@@ -35,6 +35,7 @@ function draw(){
 	var arrayColors = skyData.map(function(d){
 		return d.color;
 	});
+	var lengthColors = arrayColors.length;
 	var arrayHeights = skyData.map(function(d){
 		return d.height;
 	});
@@ -49,7 +50,7 @@ function draw(){
 
 	var colorScale = d3.scaleOrdinal()
 					.domain(arrayColors)
-					.range(d3.schemeSet3)
+					.range(d3.schemeRdPu[lengthColors])
 
 
 	var rects = svg.selectAll("rect")
