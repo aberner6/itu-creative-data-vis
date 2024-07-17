@@ -27,9 +27,9 @@ function draw(){
 	var days = [];
 	getSky();
 	function getSky(){
-		for (var i = 0; i<skyData.length; i++){
-			days.push(skyData[i].day);
-		}
+		days = skyData.map(function(d){
+			return d.day;
+		});
 	}
 	var xScale = d3.scaleBand()
 					.domain(days)
