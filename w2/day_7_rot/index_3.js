@@ -1,3 +1,6 @@
+//this is the one with cos and sin 
+//rotating data elements around in a circle
+
 var skyData = [];
 d3.json("skyData.json").then(function(data) {
     	skyData = data;
@@ -35,25 +38,6 @@ function draw(){
 		.domain([0, skyData.length])
 		.range([0, 360])
 
-	var rotPos = [];
-	getSky();
-	function getSky(){
-		for (var i = 0; i<skyData.length; i++){
-			rotPos.push({
-				"x":((w/2-r) * Math.cos((rotScale(i)) * Math.PI/180)),
-				"y":((h/2-r) * Math.sin((rotScale(i)) * Math.PI/180))
-			})
-		}
-	}
-
-
-
-	// var gElements = svg.selectAll("g")
-	// 	.data(skyData)
-	// 	.join('g')
-	//     .attr('transform', function (d, i) {
-	//     	return 'translate('+rotPos[i].x+','+rotPos[i].y+')';
-	//     });
 	var gElements = svg.selectAll("g")
 		.data(skyData)
 		.join('g')

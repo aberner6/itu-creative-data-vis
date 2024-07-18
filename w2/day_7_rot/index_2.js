@@ -1,3 +1,4 @@
+//this is the clean file of making every data element rotate within its place on the canvas
 var w = 1000;
 var h = 500;
 var rad = 20;
