@@ -8,7 +8,7 @@ var svg = d3.select("#canvas").append("svg")
 			.attr("height",h)
 			.style("background-color","black")
 
-////1. JUST SHOW IMAGE
+// ////1. JUST SHOW IMAGE
 // var img = svg.append('image')
 //     .attr('x', w/2-imgSize)
 //     .attr('y', h/2)
@@ -64,7 +64,7 @@ var images = svg.selectAll("image")
 	.attr("y", h/2)
 	.attr("width", imgSize)
 	.attr("height", imgSize)
-	.attr("xlink:href", function(d){
+	.attr("xlink:href", function(d,i){
 		return d.img;
 	})
 
