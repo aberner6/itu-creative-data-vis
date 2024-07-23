@@ -1,3 +1,4 @@
+//SET UP THE CANVAS
 var w = 1000;
 var h = 500;
 var rad = 20;
@@ -10,7 +11,7 @@ var svg = d3.select("svg")
      .attr("height", h)
      .style("background-color", "black")
 
-
+//LOAD THE DATA
 var skyData = [];
 d3.json("sky.json").then(function (data) {
      skyData = data;
@@ -18,27 +19,61 @@ d3.json("sky.json").then(function (data) {
      drawRadialLine();
 });
 
+//DRAW A LINE
+// function drawLine(){
+//   var xScale = d3.scaleLinear()
+//                .domain([0, skyData.length])
+//                .range([0, w]);
+//   var yScale = d3.scaleLinear()
+//                .domain([0, 100])
+//                .range([h-50, 50]);
+
+//      var  lineMaker = d3.line()
+//           .curve(d3.curveLinear)
+//           .x(function(d, i) {
+//                return xScale(i);
+//           })
+//           .y(function(d) {
+//                return yScale(d.sky);
+//           });
+
+
+//   var lineData = lineMaker(skyData);
+//      console.log(lineData);
+
+//   svg
+//     .append('path')
+//     .attr('d', lineData)
+//     .attr('stroke','white')
+// }
+
+
+
+
+
 ////DRAW RADIAL LINE
 var myPath;
 var myText;
 var radialLineMaker = d3.radialLine();
 function drawRadialLine() {
      var circScale = d3.scaleLinear()
-          .domain([0, 4])
+          .domain([0, skyData.length])
           .range([0, Math.PI * 2]);
 
      var scaleRadius = d3.scaleLinear()
           .domain([0, d3.max(skyData, d => d.sky)])
-          .range([0, 270])
+          .range([100, 200])
 
      radialLineMaker
           .angle(function (d, i) {
-               return circScale(d.day);
+               return circScale(i);
           })
           .radius(function (d) {
                return scaleRadius(d.sky);
           })
-          .curve(d3.curveCatmullRomOpen)
+          .curve(d3.curveCardinalClosed)
+          // .curve(d3.curveBasis);
+          // .curve(d3.curveCatmullRomOpen)
 
 
      var radialLineData = radialLineMaker(skyData);
@@ -52,38 +87,41 @@ function drawRadialLine() {
           .attr('stroke', 'white')
           .attr('fill', 'none')
 
-     // myText = svg.append("text")
-     //      .attr("x", w / 2)
-     //      .attr("y", h / 2)
-     //      .attr("fill", "white")
-     //      .text(0)
+     myText = svg.append("text")
+          .attr("x", w / 2)
+          .attr("y", h / 2)
+          .attr("fill", "white")
+          .text(0)
 }
 
+
+
+
 ////INPUT CHANGES VIS
-// d3.select("#slider").on("input", function () {
-//      update(+this.value);
-// });
+d3.select("#slider").on("input", function () {
+     update(+this.value);
+});
 
-// function update(val) {
-//      var circScale = d3.scaleLinear()
-//           .domain([0, skyData.length])
-//           .range([0, Math.PI * 2]);
+function update(val) {
+     var circScale = d3.scaleLinear()
+          .domain([0, skyData.length])
+          .range([0, Math.PI * 2]);
 
-//      radialLineMaker
-//           .angle(function (d, i) {
-//                return circScale(i);
-//           })
-//           .radius(function (d) {
-//                return d.sky;
-//           });
-//      var radialLineData = radialLineMaker(skyData);
+     radialLineMaker
+          .angle(function (d, i) {
+               return circScale(i);
+          })
+          .radius(function (d) {
+               return val;
+          });
+     var radialLineData = radialLineMaker(skyData);
 
-//      myPath
-//           .attr('d', radialLineData)
+     myPath
+          .attr('d', radialLineData)
 
-//      myText
-//           .text(val)
-// }
+     myText
+          .text(val)
+}
 
 
 
@@ -114,30 +152,4 @@ function drawRadialLine() {
 //   .attr("class", "radial")
 //   .attr("d", radialData)
 //   .attr("stroke","white")
-//DRAW A LINE
-// function drawLine(){
-//   var xScale = d3.scaleLinear()
-//                .domain([0, skyData.length])
-//                .range([0, w]);
-//   var yScale = d3.scaleLinear()
-//                .domain([0, 100])
-//                .range([h-50, 50]);
 
-//      var  lineMaker = d3.line()
-//           .curve(d3.curveLinear)
-//           .x(function(d, i) {
-//                return xScale(i);
-//           })
-//           .y(function(d) {
-//                return yScale(d.sky);
-//           });
-
-
-//   var lineData = lineMaker(skyData);
-//      console.log(lineData);
-
-//   svg
-//     .append('path')
-//     .attr('d', lineData)
-//     .attr('stroke','white')
-// }
