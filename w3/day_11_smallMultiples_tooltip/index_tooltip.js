@@ -8,7 +8,7 @@ var div = d3.select("body").append("div")
 var svg = d3.select("body").append("svg")
       .attr("width",w)
       .attr("height",h)
-      .style("background-color","black")
+      // .style("background-color","black")
 
 var skyData = [];
 d3.json("sky.json").then(function(data) {
@@ -48,6 +48,8 @@ function draw(){
       var y = Math.floor(i / numPerRow)
       return 'translate('+scale(x)+','+scale(y)+')'
     })
+  
+  var text = g.append("text")
 
   myShape = g
     .append('circle')
@@ -56,27 +58,26 @@ function draw(){
     .attr('r', function(d){ 
       return radScale(d.sky) 
     })
-    .attr('fill','white')
-    .on("mouseover", function(d) { 
+    .attr('fill','black')
+    .on("mouseover", function(d,i) { 
       var thisData = d.target.__data__;
-      console.log(thisData)
 
       d3.select(this)
         .transition()
-        .attr('fill','pink')
+        .attr('fill','pink');
 
-      div.transition()    
-        .duration(200)    
-        .style("opacity", .9);    
-      div.html(thisData.sky + "<br/>"+thisData.day) 
-        .style("left", (event.pageX) + "px")   
-        .style("top", (event.pageY - 28) + "px");   
+      // div.transition()    
+      //   .duration(200)    
+      //   .style("opacity", .9);    
+      // div.html(thisData.sky + "<br/>"+thisData.day) 
+        // .style("left", (event.pageX) + "px")   
+        // .style("top", (event.pageY - 28) + "px");   
     })          
     .on("mouseout", function(d) {  
       d3.select(this)
         .transition()
-        .attr('fill','white') 
-      div.transition()    
+        .attr('fill','black') 
+      text.transition()    
         .duration(500)    
         .style("opacity", 0); 
     }); 

@@ -10,18 +10,21 @@ var svg = d3.select("body").append("svg")
   .attr("height", h)
   .style("background-color", "black")
 
+//pull in the data
 var skyData = [];
 var nested;
 d3.json("moreData.json").then(function (data) {
   skyData = data;
+  //re-organise data from words to numbers
   var map = {
     'monday': 1,'tuesday': 2,'wednesday': 3,'thursday': 4,'friday': 5,'saturday': 6,
     'sunday': 7
   };
+  //sorting the data according to the day of week
   skyData.sort((a, b) => {
     return map[a.day] - map[b.day];
   });
-
+  //roll up the data inside of each week day
   nested = d3.group(skyData, function (d) {
     return d.day;
   })

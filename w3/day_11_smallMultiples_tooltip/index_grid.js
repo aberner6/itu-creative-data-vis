@@ -1,3 +1,4 @@
+//SETTING UP THE CANVAS
 var w = 1000;
 var h = 500;
 var rad = 20;
@@ -9,13 +10,13 @@ var svg = d3.select("body").append("svg")
       .attr("width",w)
       .attr("height",h)
       .style("background-color","black")
-
+//LOADING THE DATA
 var skyData = [];
 d3.json("sky.json").then(function(data) {
      skyData = data;
      processData();
 });
-
+//SETTING UP SCALES FOR THE SHAPE
 var radScale = d3.scaleLinear()
   .domain([0,100])
   .range([rad/4,rad])
@@ -40,7 +41,9 @@ var scale = d3.scaleLinear()
   .range([margin*2,w-margin])
 
 function draw(){
-
+//PREPARE 1 GROUP ELEMENT FOR EVERY OBJECT IN THE DATASET
+  //PLACE EACH G ALONG THE X AXIS ACCORDING TO THE DAY OF WEEK
+  //PLACE EACH ALONG THE Y AXIS ACCORDING TO THE INDEX - HOW FAR WE ARE IN THE DATASET
   var g = svg.selectAll('g')
     .data(skyData)
     .join('g')
@@ -49,7 +52,8 @@ function draw(){
       var y = Math.floor(i / numPerRow)
       return 'translate('+scale(x)+','+scale(y)+')'
     })
-
+//ADD A CIRCLE ON TOP OF THE G WHERE THE RADIUS IS ACCORDING TO THE OBSERVATION OF THE CLOUDS
+ //circle is bigger if more clouds, smaller if fwere clouds
   firstCirc = g
     .append('circle')
     .attr('cx',0)
@@ -58,14 +62,14 @@ function draw(){
       return radScale(d.sky) 
     })
     .attr('fill','white')
-
+//just for show
   secondCirc = g.append('circle')
     // .attr('class', 'second')
     .attr('cx',0)
     .attr('cy',0)
     .attr('r', 10)
     .attr('fill','pink')
-
+//draw a rectangle that changes according to how hot that day is
   secondShape = g.append('rect')
     .attr('x',0)
     .attr('y',0)

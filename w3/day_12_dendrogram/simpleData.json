@@ -5,20 +5,20 @@
             "name": "loss of ice",
             "children": [
                 {
-                    "name": "cluster",
+                    "name": "polar bears",
                     "children": [
                         {
-                            "name": "AgglomerativeCluster",
+                            "name": "made up",
                             "size": 3938
                         },
                         {
-                            "name": "CommunityStructure",
+                            "name": "made up",
                             "size": 3812
                         }
                     ]
                 },
                 {
-                    "name": "graph"
+                    "name": "seals"
                 }
             ]
         },

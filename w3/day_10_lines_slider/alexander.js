@@ -41,7 +41,7 @@ function drawRadialLine() {
             .attr('transform', 'translate(' + w / 2 + ',' + h / 2 + ')')
 
     g.selectAll("path")
-        .data([2020,2021])
+        .data([2019,2020,2021])
         .join("path")
         .attr("fill", "none")
         .attr("stroke", "white")
