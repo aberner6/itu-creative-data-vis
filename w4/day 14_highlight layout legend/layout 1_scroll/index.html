@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>layout</title>
+</head>
+<style>
+	body{
+		margin:30px;
+	}
+	h1{
+		font-family: Georgia;
+	}
+	.header{
+    	position: fixed;
+    	background-color: white;
+    	opacity: 1;
+    	z-index: 99999;    	
+    	left:0px;
+    	top:0px;
+    	padding-left:20px;
+		width:100%;
+		border-bottom-style: solid;
+		border-width: thin;
+	}
+
+
+	.buttonArea{
+		position:fixed;
+		right:195px;
+		top:150px;
+	}
+	button{
+		background-color:white;
+	}
+	button:hover{
+		background-color: grey;
+		cursor: pointer;
+		color:white;
+	}
+	#canvas{  
+    	margin-top: 150px;
+	    margin-left: 550px;
+	    border-left-style: solid;
+	    padding-left: 100px;
+	    position:fixed;
+    	left:unset !important;
+
+	}
+	p{
+		background-color: black;
+		color:white;
+		position:relative;
+		top: 150px;
+		left: 10px;
+		width: 400px;
+    	padding: 40px;
+    	margin-bottom:1000px;
+	}
+	#par4{
+    	margin-bottom:500px
+	}
+/* step 1:	I want to make it so that the second text shows up when I scroll
+ step 2: and in the second text I'll put a button that does a visual highlight on the special season and year
+ step 3: add 1 more paragraph of text -- when that is reached, the visualisation type will change to show another view
+*/
+	.show{
+		display:block;
+	}
+	.hide{
+		display:none;
+	}
+	.unClicked{
+		background-color: white;
+	}
+	.clicked{
+		background-color: grey;
+	}
+</style>
+<body>
+	<div class = "header">
+		<h1> 2 charts 1 canvas</h1>
+		<h3> An exploration of putting 2 charts into 1 canvas </h3>
+	</div>
+	<div class = "buttonArea">
+	</div>	
+	<div id="canvas">
+	</div>	
+	<p id = "par2" class = "show"> All about the <button id="year" onclick="year()">year</button>
+</p>
+	<p id = "par3" class = "show"> All about the <button id="scatter" onclick="scatterPlot()">scatter plot</button></p>
+	<p id = "par1" class = "show"> All about the <button id="season" onclick="season()">season</button> </p>
+	<p id = "par4" class = "show"> This would reveal a last chart</p>
+
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+
+
+	<script src = "index.js"></script>
+
+</body>
+</html>
