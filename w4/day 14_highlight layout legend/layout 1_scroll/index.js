@@ -103,7 +103,8 @@ window.addEventListener("scroll", (event) => {
 	var div = document.getElementById("par4");
 	var offsets = div.getBoundingClientRect();
 	var top = offsets.top;
-	if(top<=690){
+	//when the div is at a specific location trigger the second chart
+	if(top<=500){
 		triggerSecondChart();
 	}
 	else{

@@ -42,7 +42,16 @@ var rects = svg.selectAll('birthDay')
 	})	
 	.attr('width',function(d){
 		return d.yr/2;
-	});
+	})
+	.transition()
+	.duration(2000)
+	.attr('height',1)
+
+rects
+	.transition()
+	.delay(3000)
+	// .delay((d, i) => i * 1000)
+	.attr('height',barHeight)
 
 //when clicked, filter to remove any birthdays NOT born in spring
 function season(){
