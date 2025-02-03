@@ -1,6 +1,6 @@
 //GOAL: can we set up a local coding environment, webpage and draw 1 shape on it?
 
-var w = 500;
+var w = 800;
 var h = 500;
 
 var canvas = d3.select("#myVis")
@@ -8,15 +8,17 @@ var canvas = d3.select("#myVis")
        .attr("width",w)
        .attr("height",h)
        .style("background-color","blue");
-
 canvas.append("circle")
        .attr("cx", w/2)
        .attr("cy", h/2)
-       .attr("r", 50)
-       .attr("fill","white")
-
-
-
+       .attr("r", 100)
+       .attr("pink");
+canvas.append("rect")
+       .attr("x", w/2)
+       .attr("y", h/2)       
+       .attr("width", 50)
+       .attr("height", 50)
+       .attr("fill","yellow");
 
 
 

@@ -2,6 +2,7 @@
 
 var width = 500;
 var height = 500;
+var leftMargin = 50;
 
 var canvas = d3.select("#vis")
 				.append("svg")
@@ -13,13 +14,12 @@ var cupsCoffee = [0, 0, 0, 0, 1, 2, 1, 1, 1, 0, 0, 0, 3, 2, 0, 0, 0, 0, 1, 1, 0,
 
 var cupsWater = [2, 1, 3, 2, 1, 2, 2, 1, 1, 1, 1, 0, 3, 1, 2, 2, 1, 2, 1, 2, 2, 3, 4, 4, 0];
 
-var xScale = d3.scaleLinear().domain([0,cupsCoffee.length]).range([0, width])
 
 var myRects = canvas.selectAll("rect")
 					.data(cupsCoffee)
 					.join("rect")
 					.attr("x", function(d,i){
-						return xScale(i);
+ 						return leftMargin+(d*10)+(i*20);
 					})
 					.attr("y", function(d){
 						return height/2-d*10
@@ -47,6 +47,7 @@ var myRects = canvas.selectAll("rect")
 
 
 
+// var xScale = d3.scaleLinear().domain([0,cupsCoffee.length]).range([0, width])
 
 
 
