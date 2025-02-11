@@ -54,54 +54,58 @@ var dataObject = [
 		}
 	]
 
-var line = canvas.append("line")
-					.attr("x1", 0)
-					.attr("x2", w)
-					.attr("y1", h/2)
-					.attr("y2", h/2)
-					.attr("stroke", "white")
-var radius = 20;
-var spacing = 100;
-function countDuplicates(dataObjects, currentObject) {
-    return dataObjects.filter(d => d.coffee === currentObject.coffee && d.water === currentObject.water).length;
-}
 
-var circles = canvas.selectAll("circle")
-					.data(dataObject)
-					.join("circle")
-					.attr("class",function(d){
-						return d.name;
-					})
-					.attr("cx", function(d){
-						return spacing+d.water*spacing;
-					})
-					.attr("cy", function(d){
-						return h/2-d.coffee*spacing;
-					})
+
+
+
+
+
+
+
+
+
+// var line = canvas.append("line")
+// 					.attr("x1", 0)
+// 					.attr("x2", w)
+// 					.attr("y1", h/2)
+// 					.attr("y2", h/2)
+// 					.attr("stroke", "white")
+// var radius = 20;
+// var spacing = 100;
+
+// var circles = canvas.selectAll("circle")
+// 					.data(dataObject)
+// 					.join("circle")
+// 					.attr("class",function(d){
+// 						return d.name;
+// 					})
+// 					.attr("cx", function(d){
+// 						return spacing+d.water*spacing;
+// 					})
+// 					.attr("cy", function(d){
+// 						return h/2-d.coffee*spacing;
+// 					})
+// 					.attr("r", radius)
+// 					.attr("fill", "white")
+
+
+
+
+
+
+// function countDuplicates(dataObjects, currentObject) {
+//     return dataObjects.filter(d => d.coffee === currentObject.coffee && d.water === currentObject.water).length;
+// }
+
+
 					// .attr("r", function(d){
-					// 	if(d.coffee == 1 && d.water==3){
-					// 		return radius *2;
-					// 	}else{
-					// 		return radius
-					// 	}
-					// })
-					.attr("r", function(d){
-                        intersection = countDuplicates(dataObject, d);
-                        if(intersection > 1){
-                            return radius *intersection;
-                        }else{
-                            return radius
-                        }
-                    })
-					.attr("fill", "white")
-
-
-
-
-
-
-
-
+                    //     intersection = countDuplicates(dataObject, d);
+                    //     if(intersection > 1){
+                    //         return radius *intersection;
+                    //     }else{
+                    //         return radius
+                    //     }
+                    // })
 
 
 
