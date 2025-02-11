@@ -10,49 +10,105 @@ var canvas = d3.select("#canvas")
 				.attr("width", w)
 				.attr("height", h)
 				.style("background-color","black");
-
-var dataObject = [
+//global variable
+var arrayObjects = [
 		{
 			name:"annelie",
-			coffee:1,
+			coffee:4,
 			water:2
 		},
 		{
-			name:"mie",
-			coffee:0,
+			name:"morten",
+			coffee:2,
 			water:2
 		},
 		{
-			name:"oliver",
+			name:"maria",
 			coffee:1,
 			water:3
 		},
 		{
-			name:"saynab",
+			name:"josefine",
 			coffee:0,
-			water:1
+			water:2
 		},
 		{
-			name:"natalie",
-			coffee:0,
-			water:0
-		},
-		{
-			name:"magnus",
-			coffee:1,
-			water:1
-		},
-		{
-			name:"rakul",
-			coffee:1,
-			water:3
-		},
-		{
-			name:"olivia",
+			name:"julia",
 			coffee:0,
 			water:3
 		}
 	]
+
+
+var square = canvas.selectAll("squareData")
+					.data(arrayObjects)
+					.join("rect")
+					.attr("width", 10)
+					.attr("height", d => {
+						if(d.coffee==0){
+							return 10*d.water
+						}else{
+							return 10*d.coffee
+						}
+					})
+					.attr("x", function(d,i){
+						return 50+i*100
+					})
+					.attr("y", function(d){
+						if(d.coffee==0){
+							return h/2-(10*d.water);
+						}else{
+							return h/2;
+						}
+					})
+					.attr("stroke",function(d){
+						if(d.coffee==0){
+							return "blue";
+						}else{
+							return "brown";
+						}
+					 })
+					.attr("stroke-width", 4)
+					.attr("fill","white")
+
+
+
+//create a group per entry in the dataset
+// var nestedSelection = canvas.selectAll("g")
+// 	.data(arrayObjects)
+// 	.join("g");
+// //spread each group along the x axis according to index so each person gets a spot
+// nestedSelection.attr("transform", function(d, i){
+// 		return `translate(${i * 20 + 100},10)`
+// 	})
+// 	.attr("fill", function(d){
+// 		if(d.coffee==0){
+// 			return "blue"
+// 		}else{
+// 			return "saddlebrown"
+// 		}
+// 	})
+// //within each "g", or person, access the coffee data and generate a range of numbers from 0 until the max
+// var circles = nestedSelection
+//    	.selectAll("circle")
+//     .data(function(d){
+//     	if(d.coffee==0){
+//     		return d3.range(d.water)
+//     	}else{
+// 	    	return d3.range(d.coffee)
+//     	}
+//     })
+//     .join("circle");
+
+// circles.attr("r", 10)
+// 		.attr("cy", function(d, i){
+// 			return h/2-i * 20
+// 		})
+
+
+
+
+
 
 
 
