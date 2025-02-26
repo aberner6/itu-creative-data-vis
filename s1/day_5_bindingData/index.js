@@ -1,5 +1,5 @@
-//GOAL: can we move shapes around based on their data? 
-// Can we store more information inside every data piece aside from just numbers?
+//GOAL: practice -- can we move shapes around based on their data? 
+//new thing -- can we store more information inside every data piece aside from just numbers?
 
 var w = 800;
 var h = 800;
@@ -10,150 +10,155 @@ var canvas = d3.select("#canvas")
 				.attr("width", w)
 				.attr("height", h)
 				.style("background-color","black");
-//global variable
-var arrayObjects = [
+
+var data = [
+	{
+		"name":"amanda",
+		"coffee":0,
+		"water":1
+	},
+	{
+		"name":"masha",
+		"coffee":1,
+		"water":2
+	},
+	{
+		"name":"sara",
+		"coffee":0,
+		"water":2
+	},
+	{
+		"name":"frida",
+		"coffee":0,
+		"water":0
+	},
+	{
+		"name":"theresa",
+		"coffee":1,
+		"water":0
+	},
+	{
+		"name":"clara",
+		"coffee":2,
+		"water":2
+	},
+	{
+		"name":"lærke",
+		"coffee":2,
+		"water":2
+	},
+	{
+		"name":"katinka",
+		"coffee":1,
+		"water":1
+	},
+	{
+		"name":"eli",
+		"coffee":3,
+		"water":1
+	},
+	{
+		"name":"mila",
+		"coffee":1,
+		"water":2
+	}
+]
+
+var lines = canvas.selectAll("linesToData")
+					.data(data)
+					.join("line")
+					.attr("x1", function(d,i){
+						return 50+i*10;
+					})
+					.attr("y1", h/2)
+					.attr("x2", function(d,i){
+						return 50+(i*10)+d.coffee*5;
+					})
+					.attr("y2", function(d){
+						return h/2-d.water*10;
+					})
+					.attr("stroke", "white")
+
+
+
+
+
+
+/*
+var dataObject = [
 		{
 			name:"annelie",
-			coffee:4,
-			water:2
-		},
-		{
-			name:"morten",
-			coffee:2,
-			water:2
-		},
-		{
-			name:"maria",
 			coffee:1,
-			water:3
+			water:2
 		},
 		{
-			name:"josefine",
+			name:"mie",
 			coffee:0,
 			water:2
 		},
 		{
-			name:"julia",
+			name:"oliver",
+			coffee:1,
+			water:3
+		},
+		{
+			name:"saynab",
+			coffee:0,
+			water:1
+		},
+		{
+			name:"natalie",
+			coffee:0,
+			water:0
+		},
+		{
+			name:"magnus",
+			coffee:1,
+			water:1
+		},
+		{
+			name:"rakul",
+			coffee:1,
+			water:3
+		},
+		{
+			name:"olivia",
 			coffee:0,
 			water:3
 		}
 	]
 
-
-var square = canvas.selectAll("squareData")
-					.data(arrayObjects)
-					.join("rect")
-					.attr("width", 10)
-					.attr("height", d => {
-						if(d.coffee==0){
-							return 10*d.water
-						}else{
-							return 10*d.coffee
-						}
-					})
-					.attr("x", function(d,i){
-						return 50+i*100
-					})
-					.attr("y", function(d){
-						if(d.coffee==0){
-							return h/2-(10*d.water);
-						}else{
-							return h/2;
-						}
-					})
-					.attr("stroke",function(d){
-						if(d.coffee==0){
-							return "blue";
-						}else{
-							return "brown";
-						}
-					 })
-					.attr("stroke-width", 4)
-					.attr("fill","white")
-
-
-
-//create a group per entry in the dataset
-// var nestedSelection = canvas.selectAll("g")
-// 	.data(arrayObjects)
-// 	.join("g");
-// //spread each group along the x axis according to index so each person gets a spot
-// nestedSelection.attr("transform", function(d, i){
-// 		return `translate(${i * 20 + 100},10)`
-// 	})
-// 	.attr("fill", function(d){
-// 		if(d.coffee==0){
-// 			return "blue"
-// 		}else{
-// 			return "saddlebrown"
-// 		}
-// 	})
-// //within each "g", or person, access the coffee data and generate a range of numbers from 0 until the max
-// var circles = nestedSelection
-//    	.selectAll("circle")
-//     .data(function(d){
-//     	if(d.coffee==0){
-//     		return d3.range(d.water)
-//     	}else{
-// 	    	return d3.range(d.coffee)
-//     	}
-//     })
-//     .join("circle");
-
-// circles.attr("r", 10)
-// 		.attr("cy", function(d, i){
-// 			return h/2-i * 20
-// 		})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var line = canvas.append("line")
-// 					.attr("x1", 0)
-// 					.attr("x2", w)
-// 					.attr("y1", h/2)
-// 					.attr("y2", h/2)
-// 					.attr("stroke", "white")
-// var radius = 20;
-// var spacing = 100;
-
-// var circles = canvas.selectAll("circle")
-// 					.data(dataObject)
-// 					.join("circle")
-// 					.attr("class",function(d){
-// 						return d.name;
-// 					})
-// 					.attr("cx", function(d){
-// 						return spacing+d.water*spacing;
-// 					})
-// 					.attr("cy", function(d){
-// 						return h/2-d.coffee*spacing;
-// 					})
-// 					.attr("r", radius)
-// 					.attr("fill", "white")
-
-
-
-
-
-
+var line = canvas.append("line")
+					.attr("x1", 0)
+					.attr("x2", w)
+					.attr("y1", h/2)
+					.attr("y2", h/2)
+					.attr("stroke", "white")
+var radius = 20;
+var spacing = 100;
 // function countDuplicates(dataObjects, currentObject) {
 //     return dataObjects.filter(d => d.coffee === currentObject.coffee && d.water === currentObject.water).length;
 // }
 
-
+var circles = canvas.selectAll("circle")
+					.data(dataObject)
+					.join("circle")
+					.attr("class",function(d){
+						return d.name;
+					})
+					.attr("cx", function(d){
+						return spacing+d.water*spacing;
+					})
+					.attr("cy", function(d){
+						return h/2-d.coffee*spacing;
+					})
+					.attr("r", function(d){
+						if(d.coffee == 1 && d.water==3){
+							return radius *2;
+						}else{
+							return radius
+						}
+					})
 					// .attr("r", function(d){
                     //     intersection = countDuplicates(dataObject, d);
                     //     if(intersection > 1){
@@ -162,6 +167,15 @@ var square = canvas.selectAll("squareData")
                     //         return radius
                     //     }
                     // })
+					.attr("fill", "white")
+*/
+
+
+
+
+
+
+
 
 
 

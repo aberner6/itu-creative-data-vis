@@ -1,24 +1,59 @@
 //GOAL: can we set up a local coding environment, webpage and draw 1 shape on it?
 
-var w = 800;
-var h = 500;
+var width = 400;
+var height = 400;
 
-var canvas = d3.select("#myVis")
-       .append("svg")
-       .attr("width",w)
-       .attr("height",h)
-       .style("background-color","blue");
-canvas.append("circle")
-       .attr("cx", w/2)
-       .attr("cy", h/2)
-       .attr("r", 100)
-       .attr("pink");
-canvas.append("rect")
-       .attr("x", w/2)
-       .attr("y", h/2)       
-       .attr("width", 50)
-       .attr("height", 50)
-       .attr("fill","yellow");
+var myCanvas = d3.select("#myVis")
+                     .append("svg")
+                     .attr("width", width)
+                     .attr("height", height)
+                     .style("background-color","antiquewhite")
+
+                myCanvas.append("circle")
+                        .attr("cx", width/2)
+                        .attr("cy", height/2)
+                        .attr("r", 20)
+                        .attr("fill", 'hsb(200, 100, 10)')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var w = 500;
+// var h = 500;
+
+// var canvas = d3.select("#myVis")
+//        .append("svg")
+//        .attr("width",w)
+//        .attr("height",h)
+//        .style("background-color","blue");
+
+// canvas.append("circle")
+//        .attr("cx", w/2)
+//        .attr("cy", h/2)
+//        .attr("r", 50)
+//        .attr("fill","white")
+
+
+
 
 
 

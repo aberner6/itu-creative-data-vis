@@ -1,5 +1,4 @@
 [
-  { "fruit": "strawberry", "quant": 1, "color": "orange"},
   { "fruit": "orange", "quant": 1, "color": "orange"},
   { "fruit": "apple", "quant": 10, "color": "green"},
   { "fruit": "tomato", "quant": 17, "color": "red"},
