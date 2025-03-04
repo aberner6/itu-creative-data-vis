@@ -1,7 +1,7 @@
 ///our working file from class
-//explore rotation + translation in d3
-//drive shapes rotation based on data
 //look into using grouping to organise and move elements around the canvas
+//explore rotation + transform/translation in d3
+//drive shapes rotation based on data
 
 
 //set up
