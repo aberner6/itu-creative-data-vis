@@ -27,28 +27,14 @@ var svg = d3.select("#canvas").append("svg")
 var imgData = [
 	{
 	"day":1,
-	"img":"img1.jpeg"
+	"img":"img1.jpeg",
+	"cat":d3.symbolTriangle
 	},
 	{
 	"day":2,
-	"img":"img2.jpeg"
+	"img":"img2.jpeg",
+	"cat":d3.symbolSquare
 	},
-	{
-	"day":3,
-	"img":"img3.jpeg"
-	},
-	{
-		"day":4,
-		"img":"img4.jpeg"
-	},
-	{
-		"day":5,
-		"img":"img5.jpeg"
-	},
-	{
-		"day":6,
-		"img":"img6.jpeg"
-	}
 ];
 
 var xScale = d3.scaleLinear()
@@ -85,19 +71,21 @@ var labels = svg.selectAll('anything')
   .style('font-size','48px')
   .attr('fill','white')
 
-
-const shape = d3.scaleOrdinal(imgData.map(d => d.day), d3.symbols.map(s => d3.symbol().type(s)()));
+// var triangle = d3.symbol().type("triangle-up")();
+// var triangle = d3.symbol().type(d3.symbolTriangle).size(500)
+// var symbol = d3.symbol().type(d3.symbolCross);
+// const shape = d3.scaleOrdinal(imgData.map(d => d.day), d3.symbols.map(s => d3.symbol().type(s)()));
 var shapes = svg.selectAll("path")
 	.data(imgData)
     .join("path")
-      .attr("transform", function(d,i){
-		return `translate(${xScale(i)},${h/2})`
-	  })
-      .attr("fill", "pink")
-	  .attr("d", function(d){
-		console.log(shape(d.day))
-		return shape(d.day)
-	  })
+	.attr("transform", function(d,i){
+	return `translate(${xScale(i)},${h/2})`
+	})
+	.attr("fill", "pink")
+	// .attr("d", d3.symbol().type(d3.symbolTriangle));
+    .attr("d", d3.symbol().type((d) => { return d.cat }).size(30)) 
+
+
 
 	  /////SOMETHING ELSE
 // var minDay = d3.min(imgData, function(d){
