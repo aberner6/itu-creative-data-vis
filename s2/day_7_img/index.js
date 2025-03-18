@@ -59,7 +59,7 @@ var images = svg.selectAll("anything")
 var labels = svg.selectAll('anything')
   .data(imgData)
   .join('text')
-//   .attr('class','labels')
+  .attr('class','labels')
   .attr('x', function(d,i){
     return xScale(i);
   })
