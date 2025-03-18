@@ -26,15 +26,15 @@ var svg = d3.select("#canvas").append("svg")
 ////2. IMAGES CAN BE CONTAINED IN DATASETS
 var imgData = [
 	{
-	"day":4,
+	"day":1,
 	"img":"img1.jpeg"
 	},
 	{
-	"day":14,
+	"day":2,
 	"img":"img2.jpeg"
 	},
 	{
-	"day":24,
+	"day":3,
 	"img":"img3.jpeg"
 	},
 	{
@@ -42,11 +42,11 @@ var imgData = [
 		"img":"img4.jpeg"
 	},
 	{
-		"day":14,
+		"day":5,
 		"img":"img5.jpeg"
 	},
 	{
-		"day":24,
+		"day":6,
 		"img":"img6.jpeg"
 	}
 ];
@@ -86,7 +86,20 @@ var labels = svg.selectAll('anything')
   .attr('fill','white')
 
 
-/////SOMETHING ELSE
+const shape = d3.scaleOrdinal(imgData.map(d => d.day), d3.symbols.map(s => d3.symbol().type(s)()));
+var shapes = svg.selectAll("path")
+	.data(imgData)
+    .join("path")
+      .attr("transform", function(d,i){
+		return `translate(${xScale(i)},${h/2})`
+	  })
+      .attr("fill", "pink")
+	  .attr("d", function(d){
+		console.log(shape(d.day))
+		return shape(d.day)
+	  })
+
+	  /////SOMETHING ELSE
 // var minDay = d3.min(imgData, function(d){
 // 	return d.day;
 // })

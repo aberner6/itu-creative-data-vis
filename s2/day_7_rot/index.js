@@ -8,7 +8,7 @@
 // var w = 1000;
 // var h = 800;
 var r = 100,
-w = r * 3,
+w = r * 6,
 h = w;
 
 var canvas = d3.select("#canvas").append("svg")
@@ -93,7 +93,7 @@ function draw(){
 	// //make a scale that rotates the lines according to how much cloud cover is observed
 	var rotationScale = d3.scaleLinear()
 							.domain([min, max])
-							.range([360, 0])
+							.range([0, 360])
 	// //on top of the g elements, let's add a line
 	// //and let's rotate that line according to cloud cover data
 	gElements.append("rect")
