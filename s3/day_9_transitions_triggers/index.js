@@ -10,6 +10,7 @@ var svg = d3.select("#canvas")
   .on("click", function(){
 	//update data 
 	//rejoin the data to circles
+	// transitionView();
 	updateData();
   })
 
@@ -18,6 +19,7 @@ var svg = d3.select("#canvas")
   var circs = svg.selectAll('anything')
 	.data(arrData)
 	.join('circle')
+	.attr("class","original")
 	.attr('cx', w/2)
 	.attr('cy', h/2)
 	.attr("r", 1)
@@ -26,11 +28,26 @@ var svg = d3.select("#canvas")
 	.attr("stroke-width",5)
 	.transition()
 	.duration(2000)
+		.delay(function(d, i) {
+				return i / arrData.length * 4000;   // adding this in will make each data piece arrive in a timed entrance
+		})
 	.attr('r', function(d){
 		return r*d;
 	})
-	.attr("stroke","blue")
+	// .attr("stroke","blue")
 
+var xScale = d3.scaleLinear()
+				.domain(d3.extent(arrData))
+				.range([10, w-10])
+function transitionView(){
+	d3.selectAll("circle.original")
+		.transition()
+		.duration(2000)
+		.attr("cx", function(d){
+			return xScale(d);
+		})
+
+}
 
 //// 1. comment me in 
 //// THEN UPDATE THEM ALL INTO NEW DATA
@@ -57,8 +74,7 @@ var svg = d3.select("#canvas")
 // 		.attr('r', function(d){
 // 			return r*d;
 // 		})
-// 		.attr("stroke-width",1)
-// 		.attr('stroke','pink')
+// 		.attr("stroke","blue")
 //   }
 
 
@@ -67,7 +83,7 @@ var svg = d3.select("#canvas")
 
 //// 2. comment me in next (and section 1 comment out)
 //// TRANSITIONS WITH PROGRESSIVELY MORE DATA
-// var arrData = [5, 8, 6, 10, 7, 2]
+// var arrData = [50, 70, 90, 100]
 // var counter = 0;
 // var newData = [];
 // var circs;
@@ -86,14 +102,13 @@ var svg = d3.select("#canvas")
 // 	.attr("class","newData")
 // 	.attr('cx', w/2)
 // 	.attr('cy', h/2)
-// 	.attr("class","newData")
 // 	.attr('fill','none')
 // 	.attr("stroke","pink")
 // 	.transition()
 // 	.ease(d3.easeExpInOut)
 // 	.duration(2000)
 // 	.attr('r', function(d){
-// 		return d*r;
+// 		return d;
 // 	})
 // }
 
@@ -102,7 +117,7 @@ var svg = d3.select("#canvas")
 // 		.ease(d3.easeExpInOut)
 // 		.duration(2000)
 // 		.attr('r', function(d){
-// 			return d*r;
+// 			return d;
 // 		})
 // }
 
@@ -111,9 +126,9 @@ var svg = d3.select("#canvas")
 ////3. comment me in next (and section 2 comment out) 
 //// CHANGING DATA
 // var data = [];
-// svg.on("click", function(){
-// 	updateData();
-// })
+// // svg.on("click", function(){
+// // 	updateData();
+// // })
 // function updateData() {
 //   data = []; //empty the data
 //   var howLong = Math.random()*100;
@@ -128,6 +143,7 @@ var svg = d3.select("#canvas")
 // 	d3.selectAll("circle").exit().remove(); 
 // 	d3.selectAll('circle')
 // 		.data(data)
+// 		.attr("class","newData")
 // 		.attr('cy', h/2)
 // 		.attr('r', r)
 // 		.attr('fill','white')

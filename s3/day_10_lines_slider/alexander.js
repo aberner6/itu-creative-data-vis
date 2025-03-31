@@ -63,6 +63,6 @@ function drawRadialLine() {
         .append('circle')
         .attr('cx', 5)
         .attr('cy', 5)
-        .attr('r', 10)
-        .style('fill', 'pink');
+        .attr('r', 100)
+        .style('fill', 'red');
 }
