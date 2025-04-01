@@ -3,8 +3,6 @@ var w = 600;
 var h = 500;
 var rad = 20;
 var leftMargin = rad * 2;
-var imgW = rad * 4;
-var imgH = rad * 4;
 
 var svg = d3.select("svg")
      .attr("width", w)
@@ -17,14 +15,16 @@ var skyData = [];
 var circScale = d3.scaleLinear()
      .range([Math.PI*2,0]);
 var scaleRadius = d3.scaleLinear()
-     .range([100, 200])
+     .range([10, 200])
 d3.json("sky.json").then(function (data) {
      skyData = data;
-     drawLine();
+     ////for classic line chart demo
+     // drawLine();
+
+     ////for circular demo
      circScale.domain([0, skyData.length])
      scaleRadius.domain([0, d3.max(skyData, d => d.sky)])
-
-     // drawRadialLine();
+     drawRadialLine();
 });
 
 ////DRAW A LINE
@@ -37,14 +37,14 @@ function drawLine(){
                .domain([0, 100])
                .range([h-50, 50]);
 
-     var  lineMaker = d3.line()
-          .curve(d3.curveLinear)
-          .x(function(d, i) {
-               return xScale(i);
-          })
-          .y(function(d) {
-               return yScale(d.sky);
-          });
+var lineMaker = d3.line()
+     .curve(d3.curveMonotoneY)
+     .x(function(d, i) {
+          return xScale(i);
+     })
+     .y(function(d) {
+          return yScale(d.sky);
+     });
 
 
   var lineData = lineMaker(skyData);
@@ -65,7 +65,6 @@ var myPath;
 var myText;
 var radialLineMaker = d3.radialLine();
 function drawRadialLine() {
-
      radialLineMaker
           .angle(function (d, i) {
                return circScale(i);
@@ -90,16 +89,18 @@ function drawRadialLine() {
 
 ////INPUT CHANGES VIS
 d3.select("#slider").on("input", function () {
-     var slider = +this.value;
+     var slider = parseInt(this.value);
+     console.log(slider)
      var random = Math.random()*100;
-     addData(random);
+     addData(random, slider);
 });
 
 function addData(random,slider){
      skyData.push({
-          sky:random
+          sky:slider
      })
-     update(skyData,slider);
+     // update(skyData,slider);
+     change(skyData);
 }
 function update(skyData,slider) {
      radialLineMaker
