@@ -35,9 +35,9 @@ var dayNames = [];
 var dayScale = d3.scaleBand()
   .range([margin * 2, w - margin])
 function processData() {
-  for (var i = 0; i < skyData.length; i++) {
-    dayNames.push(skyData[i].day)
-  }
+	dayNames = d3.map(skyData, function(d,i){
+		return d.day;
+	})
   dayScale.domain(dayNames)
   draw()
 }
@@ -59,13 +59,20 @@ function draw() {
 
   //here d is the elements of the nested array 
   //so is attaching the array from the property values
-  var circShape = g.selectAll('circle')
+  var shape = g.selectAll('g')
     .data(function (d) {
-      console.log(d);
-      console.log(d[1])
       return d[1];
     })
-    .join('circle')
+    .join('g')
+    .attr('class','shapes')
+
+  var triangles = shape.filter(function(d) { return d.sky > 50 })
+    .append('path')
+    .attr("fill", "pink")
+    .attr("d", d3.symbol().type(d3.symbolTriangle).size(30)) 
+
+  var circs = shape.filter(function(d) { return d.sky < 50 })
+    .append('circle')
     .attr('cx', 0)
     .attr('cy', 0)
     .attr('r', function (d) {
