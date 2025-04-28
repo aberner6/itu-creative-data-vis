@@ -2,9 +2,7 @@ var w = 1000;
 var h = 500;
 var rad = 20;
 var margin = rad * 2;
-var div = d3.select("body").append("div")
-  .attr("class", "tooltip")
-  .style("opacity", 0);
+
 var svg = d3.select("body").append("svg")
   .attr("width", w)
   .attr("height", h)

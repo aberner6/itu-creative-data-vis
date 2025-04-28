@@ -1,106 +1,61 @@
 {
-    "name": "cause of death",
+    "name": "2023",
     "children": [
         {
-            "name": "loss of ice",
+            "name": "2024",
             "children": [
                 {
-                    "name": "polar bears",
+                    "name": "2025",
                     "children": [
                         {
-                            "name": "made up",
-                            "size": 3938
+                            "name": "2026",
+                            "size": 3938,
+                            "img": "image23.png"
                         },
                         {
-                            "name": "made up",
-                            "size": 3812
+                            "name": "2026",
+                            "size": 3812,
+                            "img": "image22.png"
+                        },
+                        {
+                            "name": "2026",
+                            "size": 3812,
+                            "img": "image24.png"
                         }
                     ]
-                },
-                {
-                    "name": "seals"
                 }
             ]
         },
         {
-            "name": "acidic seas",
+            "name": "2024",
             "children": [
                 {
-                    "name": "coral reef",
+                    "name": "2025",
                     "children": [
                         {
-                            "name": "Axes",
-                            "size": 1302
+                            "name": "2026",
+                            "size": 1302,
+                            "img": "image21.png"
                         }
                     ]
                 },
                 {
-                    "name": "0",
+                    "name": "2025",
                     "children": [
                         {
-                            "name": ".5",
-                            "children": [
-                                {
-                                    "name": "1",
-                                    "children": [
-                                        {
-                                            "name": "1.5",
-                                            "children": [
-                                                {
-                                                    "name": "2",
-                                                    "children": [
-                                                        {
-                                                            "name": "2.5",
-                                                            "children": [
-                                                                {
-                                                                    "name": "3",
-                                                                    "children": [
-                                                                        {
-                                                                            "name": "oyster",
-                                                                            "img": "oyster.jpg"                               
-                                                                        }
-                                                                    ]                        
-                                                                }
-                                                            ]               
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
+                            "name": "2026",
+                            "img": "oyster.jpg"
+                        },
+                        {
+                            "name": "2026",
+                            "img": "image25.png"
+                        },
+                        {
+                            "name": "2026",
+                            "img": "image26.png"
                         }
                     ]
-                },
-                {
-                    "name": "shark"
                 }
-            ]
-        },
-        {
-            "name": "disease",
-            "children": [
-            ]
-        },
-        {
-            "name": "drought",
-            "children": [
-            ]
-        },
-        {
-            "name": "rising sea levels",
-            "children": [
-            ]
-        },
-        {
-            "name": "problems controlling body temperature",
-            "children": [
-            ]
-        },
-        {
-            "name": "problems procreating",
-            "children": [
             ]
         }
     ]

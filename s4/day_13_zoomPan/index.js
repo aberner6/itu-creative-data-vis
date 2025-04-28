@@ -1,107 +1,87 @@
-var w = 1000;
-var h = 500;
-var rad = 20;
-var leftMargin = rad*2;
-var div = d3.select("body").append("div") 
-    .attr("class", "tooltip")       
-    .style("opacity", 0);
-var svg = d3.select("body").append("svg")
-      .attr("width",w)
-      .attr("height",h)
-      .style("background-color","black")
-
-var skyData = [];
-d3.json("sky.json").then(function(data) {
-     skyData = data;
-     processData();
-});
-
-var dayNames = [];
-var xScale = d3.scaleLinear()
-var radScale = d3.scaleLinear()
-  .domain([0,100])
-  .range([rad/4,rad])
-
-function processData(){
-  for(var i = 0; i<skyData.length; i++){
-    dayNames.push(skyData[i].day)
-  }
-  draw();
-  initZoom();
-}
+var w = 300;
+var h = 300;
+var barHeight = 10;
 
 
-var numPerRow = 7;
-var size = rad;
-var scale = d3.scaleLinear()
-  .domain([0, numPerRow -1])
-  .range([leftMargin*2,w-leftMargin])
-
-var pageX;
-var pageY;
-var g;
-var myShape;
-function draw(){
-  g = svg.selectAll('g')
-    .data(skyData)
-    .join('g')
-    .attr('transform',function(d,i){
-      var x = i % numPerRow  
-      var y = Math.floor(i / numPerRow)
-      return 'translate('+scale(x)+','+scale(y)+')'
-    })
-
-  myShape = g
-    .append('circle')
-    .attr('cx',0)
-    .attr('cy',0)
-    .attr('r', function(d){ 
-      return radScale(d.sky) 
-    })
-    .attr('fill','white')
-    .on("mouseover", function(d) { 
-      var thisData = d.target.__data__;
-      d3.select(this)
-        .transition()
-        .attr('fill','pink')
-
-      div.transition()    
-        .duration(200)    
-        .style("opacity", .9);    
-      div.html(thisData.sky + "<br/>"+thisData.day) 
-        .style("left", (event.pageX) + "px")   
-        .style("top", (event.pageY - 28) + "px");   
-    })          
-    .on("mouseout", function(d) {  
-      d3.select(this)
-        .transition()
-        .attr('fill','white') 
-      div.transition()    
-        .duration(500)    
-        .style("opacity", 0); 
-    }); 
-}
-
+var svg = d3.select("#canvas")
+	.append("svg")
+	.attr("width",w)
+	.attr("height",h)
+	.style("border-style","solid")
+	.style("border-color","pink")
+      .append("g")
+		
 var zoom = d3.zoom()
-  .on('zoom', handleZoom)
-  .scaleExtent([1, 5])
-  .translateExtent([[0, 0], [w, h]]);
+	.scaleExtent([1, 5])
+	.translateExtent([[0,0],[w,h]])
+	.on("zoom", handleZoom)
 
-function handleZoom(e) {
-  d3.select('svg')
-    .attr('transform', e.transform);
+
+function handleZoom(e){
+	d3.select('svg g').attr("transform", e.transform)
 }
-function initZoom() {
-  d3.selectAll('svg')
-    .call(zoom);
-
-////PROGRAMMATIC ZOOM
-  // d3.selectAll('svg')
-  //   .transition()
-  //   .duration(2000)
-  //   .call(zoom.scaleBy, 2)
-  //   .transition()
-  //   .duration(3000)
-  //   .call(zoom.translateBy,0, h/2);
+function initZoom(){
+	d3.select('svg').call(zoom)
 }
 
+var birthDay = [
+	{"name":"stine","day":1,"month":12,"yr":90},
+	{"name":"evin","day":11,"month":9,"yr":98},
+	{"name":"ann","day":12,"month":11,"yr":99},
+	{"name":"ann","day":12,"month":3,"yr":95},
+	{"name":"rachel","day":20,"month":1,"yr":80},
+	{"name":"rachel","day":18,"month":2,"yr":88},
+	{"name":"rachel","day":18,"month":4,"yr":85},
+	{"name":"rachel","day":18,"month":6,"yr":82}
+];
+var myColors = ["pink","blue","yellow"]
+
+//y scale based on months of the year
+var yScale = d3.scaleLinear()
+	.domain([1, 12])
+	.range([barHeight, h-barHeight*2]);
+
+
+//make one rectangle per item in the dataset
+	//lay them out along the y axis according to month of year
+	//january at top, december at bottom
+var rects = svg.selectAll('birthDay')
+	.data(birthDay)
+	.join('rect') 
+	.attr('class', function(d){
+		return d.month;
+	})
+	.attr('x', 100)
+  	.attr('height', barHeight)
+  	.attr('fill','blue')
+  	.attr('y',function(d,i){
+		return yScale(d.month);
+	})	
+	.attr('width',function(d){
+		return d.yr/2;
+	})
+
+
+//when we click, zoom in
+function zoomIn(){
+	d3.select('svg')
+		.transition()
+		.duration(2000)
+		.call(zoom.scaleBy,2)
+}
+//when we click, move the focus
+function move(){
+	d3.select('svg')
+			.transition()
+			.duration(2000)
+			.call(zoom.scaleBy, 0)
+			.transition()
+			.duration(2000)
+			.ease(d3.easeBounce)
+			.call(
+				zoom.transform,
+				d3.zoomIdentity.translate(0, -100)
+			);
+}
+
+initZoom();

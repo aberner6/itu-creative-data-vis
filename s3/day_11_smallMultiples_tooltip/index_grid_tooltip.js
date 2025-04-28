@@ -56,11 +56,11 @@ function draw(){
     .attr('r', function(d){ 
       return radScale(d.sky) 
     })
-    .attr('fill','none')
+    .attr('fill','white')
     .attr('stroke','black')
 
     //draw a rectangle that changes according to how hot that day is
-  secondShape = g.append('rect')
+  secondRect = g.append('rect')
     .attr('x',0)
     .attr('y',0)
     .attr('width', function(d){
@@ -73,14 +73,19 @@ function draw(){
 
     setTooltips();
 
-// set the tooltip content based on the bar data; and
+// set the tooltip content based on the data; and
 //tell tippy where our tooltips should originate from. For both steps, we need to grab our bar selection:
   function setTooltips(){
       // reference the shape that you want connected to the mouseover
       // set the tooltip content
-      secondShape.attr('data-tippy-content', (d,i)=>{
-          return `Day: ${d.day}, Temp: ${d.temp}, Sky: ${d.sky}`;
+      firstCirc.attr('data-tippy-content', (d,i)=>{
+        return `Day: ${d.day}, Sky: ${d.sky}`;
       });
-      tippy(secondShape.nodes());
+      tippy(firstCirc.nodes());
+
+      secondRect.attr('data-tippy-content', (d,i)=>{
+          return `Day: ${d.day}, Temp: ${d.temp}`;
+      });
+      tippy(secondRect.nodes());
     }
 }

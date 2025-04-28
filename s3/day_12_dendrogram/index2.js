@@ -6,12 +6,12 @@ d3.json("simpleData.json").then(function (d) {
     console.log(data)
     draw();
 });
-
+var root;
 function draw(){
 
 // Compute the tree height; this approach will allow the height of the
 // SVG to scale according to the breadth (width) of the tree layout.
-const root = d3.hierarchy(data);
+root = d3.hierarchy(data);
 const dx = 50;
 const dy = width / (root.height + 1);
 
@@ -38,11 +38,11 @@ const height = x1 - x0 + dx * 2;
 const svg = d3.select("#vis").append("svg")
     .attr("width", width)
     .attr("height", height)
-    .attr("viewBox", [-dy / 3, x0 - dx, width, height])
+    .attr("viewBox", [-dy / 6, x0 - dx, width, height])
     .attr("style", "max-width: 100%; height: auto; font: 10px sans-serif;");
 
 const link = svg.append("g")
-    .attr("fill", "none")
+    .attr("fill", "none").attr("class","link")
     .attr("stroke", "#555")
     .attr("stroke-opacity", 0.4)
     .attr("stroke-width", 1.5)
@@ -53,7 +53,7 @@ const link = svg.append("g")
           .x(d => d.y)
           .y(d => d.x));
 
-const node = svg.append("g")
+const node = svg.append("g").attr("class","node")
     .attr("stroke-linejoin", "round")
     .attr("stroke-width", 3)
   .selectAll()
@@ -75,10 +75,11 @@ node.append("image")
         console.log(d);
 		return d.data.img;
 	})
-    .attr("x",0)
-    .attr("y",0)
-    .attr("width",20)
-    .attr("height",20)
+    .attr("x",-100)
+    .attr("y",-50)
+    .attr("width",200)
+    .attr("height",200)
+    .attr("opacity",.5)
 
 node.append("text")
     .attr("dy", "0.31em")
