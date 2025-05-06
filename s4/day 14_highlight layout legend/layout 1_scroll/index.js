@@ -43,7 +43,12 @@ var rects = svg.selectAll('birthDay')
 	.attr('width',function(d){
 		return d.yr/2;
 	});
-
+var scrollRect = svg.append('rect')
+	.attr('x',50)
+	.attr('y',100)
+	.attr('width',100)
+	.attr('height',10)
+	.attr('fill','black')
 //I want to make the y axis based on the year people are born in, so I need my min and max
 var minYear = d3.min(birthDay, d => d.yr)
 var maxYear = d3.max(birthDay, d => d.yr)
@@ -103,6 +108,12 @@ window.addEventListener("scroll", (event) => {
 	var div = document.getElementById("par4");
 	var offsets = div.getBoundingClientRect();
 	var top = offsets.top;
+
+	
+	scrollRect
+		.transition()
+		.duration(2000)
+		.attr("y",top)
 	//when the div is at a specific location trigger the second chart
 	if(top<=500){
 		triggerSecondChart();

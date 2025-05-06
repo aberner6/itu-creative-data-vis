@@ -23,20 +23,44 @@ var svg = d3.select("#canvas")
 	.attr('cx', w/2)
 	.attr('cy', h/2)
 	.attr("r", 1)
-	.attr('fill','none')
-	.attr("stroke","pink")
-	.attr("stroke-width",5)
-	.transition()
-	.duration(2000)
-		.delay(function(d, i) {
-				return i / arrData.length * 4000;   // adding this in will make each data piece arrive in a timed entrance
-		})
-	.attr('r', function(d){
-		return r*d;
-	})
+	// .attr('fill','none')
+	// .attr("stroke","pink")
+	// .attr("stroke-width",5)
+	// .transition()
+	// .duration(2000)
+	// 	.delay(function(d, i) {
+	// 			return i / arrData.length * 8000;   // adding this in will make each data piece arrive in a timed entrance
+	// 	})
+	// .attr('r', function(d){
+	// 	return r*d;
+	// })
 	// .attr("stroke","blue")
+var rectLine = svg
+	.append("rect")
+	.attr("x",100)
+	.attr("y",100)
+	.attr("width",500)
+	.attr("height",1)
+	.attr("fill","white")
+	.transition()
+	.duration(20000)
+		.attr("y",1000)
 
-var xScale = d3.scaleLinear()
+
+var circle = svg.append("circle")
+.attr("cx",100)
+.attr("cy",100)
+.attr("r",20)
+.attr("fill","white")
+.transition()
+.duration(20000)
+.attr("y",1000)
+.attr("fill", function(){
+	for(var i =0; i<40; i++){
+		return colorScale(data[i].ratio)
+	}
+})
+	var xScale = d3.scaleLinear()
 				.domain(d3.extent(arrData))
 				.range([10, w-10])
 function transitionView(){
